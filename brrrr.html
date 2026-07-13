@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d5f6e">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+
+<title>BRRRR Investment Calculator</title>
+</head>
+<body>
+
+<main class="app-page">
+  <a class="back-link" href="./index.html">← Back to All Calculators</a>
+
+  <section class="hero">
+    <p class="eyebrow">Calculator 1 of 4</p>
+    <h1>BRRRR Investment Calculator</h1>
+    <p>Estimate purchase costs, refinance proceeds, equity, monthly cash flow, NOI, and ROI.</p>
+    <div class="hero-actions">
+      <button class="btn btn-light" id="clearBtn" type="button">Clear</button>
+      <button class="btn btn-primary" id="sampleBtn" type="button">Load Sample Deal</button>
+    </div>
+  </section>
+
+  <div class="calculator-layout">
+    <section class="main-card">
+      <div class="top-summary">
+        <div class="summary-box primary">
+          <span class="summary-label">Cash Flow</span>
+          <strong class="summary-value" id="summaryCashFlow">$0.00</strong>
+        </div>
+        <div class="summary-box">
+          <span class="summary-label">Cash to Close</span>
+          <strong class="summary-value" id="summaryCashToClose">$0.00</strong>
+        </div>
+        <div class="summary-box">
+          <span class="summary-label">ROI</span>
+          <strong class="summary-value" id="summaryRoi">0.00%</strong>
+        </div>
+      </div>
+
+      <details class="calc-section" open>
+        <summary>
+          <div class="section-head">
+            <span class="section-num">1</span>
+            <div><h2>Buy Rehab Rent Refinance Repeat</h2><p>Purchase, rehab, financing, and cash-to-close numbers</p></div>
+          </div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="field"><label>ARV</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="arv" type="number" value="305000"></div></div>
+            <div class="field"><label>Purchase Price</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="purchasePrice" type="number" value="145000"></div></div>
+            <div class="field"><label>Lender Fee</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="lenderFee" type="number" value="5060.50"></div></div>
+            <div class="field"><label>Survey & Appraisal</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="surveyAppraisal" type="number" value="1000"></div></div>
+            <div class="field"><label>Insurance & Taxes</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="additionalCosts" type="number" value="2000"></div></div>
+            <div class="field"><label>Rehab</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="rehab" type="number" value="50000"></div></div>
+            <div class="field"><label>Hard Money Loan % of ARV</label><div class="input-wrap"><input class="has-right" id="hardMoneyPercent" type="number" value="75"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>Closing Cost %</label><div class="input-wrap"><input class="has-right" id="closingCostPercent" type="number" value="2.5"><span class="symbol-right">%</span></div></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">Total Investment</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="totalInvestment">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Hard Money Loan</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="hardMoneyLoan">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Closing Cost and Lender Fees</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="closingAndFees">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">LH - Out of Pocket</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="outOfPocket">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Total Cash to Close</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money orange" id="cashToClose">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Closing Cost</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="closingCost">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head">
+            <span class="section-num">2</span>
+            <div><h2>Refinance Info</h2><p>Compare two LTV refinance scenarios</p></div>
+          </div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="field"><label>Cost to Refinance</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="refiCost" type="number" value="6600"></div></div>
+            <div class="field"><label>Holding %</label><div class="input-wrap"><input class="has-right" id="holdingPercent" type="number" value="4"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>LTV Scenario 1</label><div class="input-wrap"><input class="has-right" id="ltv75" type="number" value="75"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>LTV Scenario 2</label><div class="input-wrap"><input class="has-right" id="ltv80" type="number" value="80"><span class="symbol-right">%</span></div></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">Holding Cost</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="holdingCost">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Scenario 1 Loan</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="ltv75Loan">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Scenario 2 Loan</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="ltv80Loan">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Scenario 1 Cash In / Cash Back</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money green" id="cashBack75">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Scenario 2 Cash In / Cash Back</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money green" id="cashBack80">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Scenario 1 Equity</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="equity75">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Scenario 2 Equity</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="equity80">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head">
+            <span class="section-num">3</span>
+            <div><h2>Operating Cash Flow</h2><p>Rent, financing, and monthly expenses</p></div>
+          </div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="field"><label>Market Rent</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="marketRent" type="number" value="2500"></div></div>
+            <div class="field"><label>Interest Rate</label><div class="input-wrap"><input class="has-right" id="interestRate" type="number" value="7"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>Term</label><div class="input-wrap"><input class="has-right" id="termYears" type="number" value="30"><span class="symbol-right">yrs</span></div></div>
+            <div class="field"><label>Taxes</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="monthlyTaxes" type="number" value="100"></div></div>
+            <div class="field"><label>Insurance</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="monthlyInsurance" type="number" value="150"></div></div>
+            <div class="field"><label>HOA</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="monthlyHoa" type="number" value="0"></div></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">Principal & Interest</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="principalInterest">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Total Monthly Expenses</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="totalExpenses">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head">
+            <span class="section-num">4</span>
+            <div><h2>The Shake Out</h2><p>Final deal results</p></div>
+          </div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">Cash Flow</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="cashFlow">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">NOI</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="noi">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Market Value</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="marketValue">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">ROI</span><div class="output" id="roi">0.00%</div></div>
+          </div>
+          <div class="status-pill status-orange" id="dealStatus">Review the deal.</div>
+          <div class="action-grid">
+            <button class="btn btn-outline" id="copyBtn" type="button">Copy Summary</button>
+            <button class="btn btn-outline" id="printBtn" type="button">Print / Save PDF</button>
+            <button class="btn btn-outline" id="saveBtn" type="button">Save Deal</button>
+            <button class="btn btn-primary" id="shareBtn" type="button">Copy Share Link</button>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <aside class="sidebar">
+      <div class="side-card">
+        <h3>Deal Rating</h3>
+        <div class="legend">
+          <div class="legend-item legend-good"><span>Green</span><span>Good Deal</span></div>
+          <div class="legend-item legend-bad"><span>Orange</span><span>Review Deal</span></div>
+          <div class="legend-item legend-no"><span>Red</span><span>No Deal</span></div>
+        </div>
+      </div>
+      <div class="side-card">
+        <h3>How to Use It</h3>
+        <ul class="tip-list">
+          <li>Enter purchase and rehab information.</li>
+          <li>Compare the two refinance scenarios.</li>
+          <li>Add rent and monthly expenses.</li>
+          <li>Review cash flow and ROI.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./common.js"></script>
+<script src="./calc-utils.js"></script>
+<script>
+const sample={arv:305000,purchasePrice:145000,lenderFee:5060.50,surveyAppraisal:1000,additionalCosts:2000,rehab:50000,hardMoneyPercent:75,closingCostPercent:2.5,refiCost:6600,holdingPercent:4,ltv75:75,ltv80:80,marketRent:2500,interestRate:7,termYears:30,monthlyTaxes:100,monthlyInsurance:150,monthlyHoa:0};
+const ids=Object.keys(sample);
+function calculate(){
+  const arv=n("arv"),purchase=n("purchasePrice"),lender=n("lenderFee"),survey=n("surveyAppraisal"),additional=n("additionalCosts"),rehab=n("rehab");
+  const hardPct=n("hardMoneyPercent"),closePct=n("closingCostPercent"),refi=n("refiCost"),holdPct=n("holdingPercent"),ltv1=n("ltv75"),ltv2=n("ltv80");
+  const rent=n("marketRent"),rate=n("interestRate"),years=n("termYears"),tax=n("monthlyTaxes"),ins=n("monthlyInsurance"),hoa=n("monthlyHoa");
+  const closing=purchase*(closePct/100);
+  const closeFees=lender+closing+survey+additional;
+  const total=purchase+lender+closing+survey+additional+rehab;
+  const hard=arv*(hardPct/100);
+  const oop=Math.max(0,(purchase+rehab)-hard);
+  const cashClose=closeFees+oop;
+  const holding=total*(holdPct/100);
+  const loan1=arv*(ltv1/100),loan2=arv*(ltv2/100);
+  const basis=total+refi+holding;
+  const cash1=loan1-basis,cash2=loan2-basis;
+  const eq1=arv-loan1,eq2=arv-loan2;
+  const pi=monthlyPayment(loan1,rate,years);
+  const expenses=pi+tax+ins+hoa;
+  const cashFlow=rent-expenses;
+  const noi=cashFlow*12;
+  const roi=cashClose>0?(noi/cashClose)*100:0;
+
+  setText("closingCost",money(closing));
+  setText("totalInvestment",money(total));
+  setText("hardMoneyLoan",money(hard));
+  setText("closingAndFees",money(closeFees));
+  setText("outOfPocket",money(oop));
+  setText("cashToClose",money(cashClose));
+  setText("holdingCost",money(holding));
+  setText("ltv75Loan",money(loan1));
+  setText("ltv80Loan",money(loan2));
+  setText("cashBack75",money(cash1));
+  setText("cashBack80",money(cash2));
+  setText("equity75",money(eq1));
+  setText("equity80",money(eq2));
+  setText("principalInterest",money(pi));
+  setText("totalExpenses",money(expenses));
+  setText("cashFlow",money(cashFlow));
+  setText("noi",money(noi));
+  setText("marketValue",money(arv));
+  setText("roi",roi.toFixed(2)+"%");
+  setText("summaryCashFlow",money(cashFlow));
+  setText("summaryCashToClose",money(cashClose));
+  setText("summaryRoi",roi.toFixed(2)+"%");
+
+  const status=$("dealStatus");
+  status.className="status-pill";
+  if(cashFlow>=300){
+    status.classList.add("status-green");
+    status.textContent="Good Deal — Strong Positive Monthly Cash Flow";
+  }else if(cashFlow>=0){
+    status.classList.add("status-orange");
+    status.textContent="Review Deal — Positive but Limited Cash Flow";
+  }else{
+    status.classList.add("status-red");
+    status.textContent="No Deal — Negative Monthly Cash Flow";
+  }
+
+  window.deal={arv,purchase,rehab,total,cashClose,loan1,loan2,cash1,cash2,eq1,eq2,rent,expenses,cashFlow,noi,roi};
+}
+function populate(v){ids.forEach(id=>$(id).value=v[id]);calculate()}
+function summary(){
+  const d=window.deal;
+  return [
+    "BRRRR DEAL SUMMARY",
+    "ARV: "+money(d.arv),
+    "Purchase Price: "+money(d.purchase),
+    "Rehab: "+money(d.rehab),
+    "Total Investment: "+money(d.total),
+    "Cash to Close: "+money(d.cashClose),
+    "Scenario 1 Loan: "+money(d.loan1),
+    "Scenario 2 Loan: "+money(d.loan2),
+    "Scenario 1 Cash In / Cash Back: "+money(d.cash1),
+    "Scenario 2 Cash In / Cash Back: "+money(d.cash2),
+    "Scenario 1 Equity: "+money(d.eq1),
+    "Scenario 2 Equity: "+money(d.eq2),
+    "Market Rent: "+money(d.rent),
+    "Monthly Expenses: "+money(d.expenses),
+    "Monthly Cash Flow: "+money(d.cashFlow),
+    "NOI: "+money(d.noi),
+    "ROI: "+d.roi.toFixed(2)+"%"
+  ].join("\n");
+}
+ids.forEach(id=>$(id).addEventListener("input",calculate));
+$("sampleBtn").onclick=()=>{populate(sample);showToast("Sample deal loaded.")};
+$("clearBtn").onclick=()=>{const blank={};ids.forEach(id=>blank[id]=0);blank.termYears=30;populate(blank);showToast("Calculator cleared.")};
+$("saveBtn").onclick=()=>saveInputs("deba-brrrr",ids);
+$("copyBtn").onclick=()=>copyText(summary(),"Summary copied.");
+$("shareBtn").onclick=()=>copyText(shareLink(ids),"Share link copied.");
+$("printBtn").onclick=()=>window.print();
+if(!applyQuery(ids)&&!loadInputs("deba-brrrr",ids))populate(sample);else calculate();
+</script>
+</body>
+</html>

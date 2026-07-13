@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d5f6e">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+
+<title>Wholesale Master Deal Analyzer</title>
+</head>
+<body>
+
+<main class="app-page">
+  <a class="back-link" href="./index.html">← Back to All Calculators</a>
+
+  <section class="hero">
+    <p class="eyebrow">Calculator 4 of 4</p>
+    <h1>Wholesale Master Deal Analyzer</h1>
+    <p>Test the seller’s asking price against the 65%, 70%, and 75% wholesale rules.</p>
+    <div class="hero-actions">
+      <button class="btn btn-light" id="clearBtn" type="button">Clear</button>
+      <button class="btn btn-primary" id="sampleBtn" type="button">Load Sample Deal</button>
+    </div>
+  </section>
+
+  <div class="calculator-layout">
+    <section class="main-card">
+      <div class="top-summary">
+        <div class="summary-box primary"><span class="summary-label">Best Rule</span><strong class="summary-value" id="summaryRule">—</strong></div>
+        <div class="summary-box"><span class="summary-label">Best Max Offer</span><strong class="summary-value" id="summaryOffer">$0.00</strong></div>
+        <div class="summary-box"><span class="summary-label">Assignment Fee</span><strong class="summary-value" id="summaryFee">$0.00</strong></div>
+      </div>
+
+      <details class="calc-section" open>
+        <summary>
+          <div class="section-head"><span class="section-num">1</span><div><h2>Deal Inputs</h2><p>Property numbers and assignment target</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="field"><label>ARV</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="arv" type="number" value="380000"></div></div>
+            <div class="field"><label>Rehab Budget</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="rehab" type="number" value="70000"></div></div>
+            <div class="field"><label>Seller Asking Price</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="asking" type="number" value="195000"></div></div>
+            <div class="field"><label>Assignment Fee Goal</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="assignmentGoal" type="number" value="10000"></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section" open>
+        <summary>
+          <div class="section-head"><span class="section-num">2</span><div><h2>65% Rule</h2><p>Conservative wholesale analysis</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">65% of ARV</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule65Value">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Max Offer @ 65%</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule65Offer">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Deal @ 65%</span><div class="output" id="rule65Deal">—</div></div>
+            <div class="result-item"><span class="result-label">Assignment Fee @ 65%</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule65Fee">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head"><span class="section-num">3</span><div><h2>70% Rule</h2><p>Balanced wholesale analysis</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">70% of ARV</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule70Value">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Max Offer @ 70%</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule70Offer">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Deal @ 70%</span><div class="output" id="rule70Deal">—</div></div>
+            <div class="result-item"><span class="result-label">Assignment Fee @ 70%</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule70Fee">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head"><span class="section-num">4</span><div><h2>75% Rule</h2><p>Higher-offer wholesale analysis</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">75% of ARV</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule75Value">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Max Offer @ 75%</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule75Offer">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Deal @ 75%</span><div class="output" id="rule75Deal">—</div></div>
+            <div class="result-item"><span class="result-label">Assignment Fee @ 75%</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="rule75Fee">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head"><span class="section-num">5</span><div><h2>Best Wholesale Rule</h2><p>First workable rule from 65% to 75%</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">Best Wholesale % Rule</span><div class="output green" id="bestRule">—</div></div>
+            <div class="result-item"><span class="result-label">Best Maximum Offer</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money green" id="bestOffer">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Estimated Assignment Fee</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money green" id="bestFee">$0.00</div></div></div>
+          </div>
+
+          <div class="status-pill status-orange" id="dealStatus">Review the deal.</div>
+
+          <div class="action-grid">
+            <button class="btn btn-outline" id="copyBtn" type="button">Copy Summary</button>
+            <button class="btn btn-outline" id="printBtn" type="button">Print / Save PDF</button>
+            <button class="btn btn-outline" id="saveBtn" type="button">Save Deal</button>
+            <button class="btn btn-primary" id="shareBtn" type="button">Copy Share Link</button>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <aside class="sidebar">
+      <div class="side-card">
+        <h3>Formula</h3>
+        <ul class="tip-list">
+          <li>Rule Value = ARV × rule percentage.</li>
+          <li>Max Offer = Rule Value − Rehab − Assignment Fee Goal.</li>
+          <li>A deal works when asking price is at or below the max offer.</li>
+        </ul>
+      </div>
+      <div class="side-card">
+        <h3>Rule Order</h3>
+        <ul class="tip-list">
+          <li>65% is the most conservative.</li>
+          <li>70% is the middle option.</li>
+          <li>75% allows the highest offer.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./common.js"></script>
+<script src="./calc-utils.js"></script>
+<script>
+const sample={arv:380000,rehab:70000,asking:195000,assignmentGoal:10000};
+const ids=Object.keys(sample);
+
+function result(rule){
+  const arv=n("arv");
+  const rehab=n("rehab");
+  const asking=n("asking");
+  const goal=n("assignmentGoal");
+  const value=arv*(rule/100);
+  const offer=value-rehab-goal;
+  const deal=asking<=offer;
+  const fee=deal?Math.max(0,offer-asking):0;
+  return {rule,value,offer,deal,fee};
+}
+
+function setRule(r){
+  setText("rule"+r.rule+"Value",money(r.value));
+  setText("rule"+r.rule+"Offer",money(r.offer));
+
+  const dealEl=$("rule"+r.rule+"Deal");
+  dealEl.textContent=r.deal?"YES — Deal at "+r.rule+"%":"NO — Not a Deal";
+  dealEl.className="output "+(r.deal?"green":"red");
+
+  setText("rule"+r.rule+"Fee",money(r.fee));
+}
+
+function calculate(){
+  const results=[result(65),result(70),result(75)];
+  results.forEach(setRule);
+
+  const best=results.find(r=>r.deal);
+  const status=$("dealStatus");
+  status.className="status-pill";
+
+  if(best){
+    setText("bestRule",best.rule+"% Rule");
+    setText("bestOffer",money(best.offer));
+    setText("bestFee",money(best.fee));
+    setText("summaryRule",best.rule+"%");
+    setText("summaryOffer",money(best.offer));
+    setText("summaryFee",money(best.fee));
+
+    status.classList.add("status-green");
+    status.textContent="Deal Found — The "+best.rule+"% Rule Works";
+  }else{
+    setText("bestRule","No Rule Works");
+    setText("bestOffer",money(0));
+    setText("bestFee",money(0));
+    setText("summaryRule","No Deal");
+    setText("summaryOffer",money(0));
+    setText("summaryFee",money(0));
+
+    status.classList.add("status-red");
+    status.textContent="No Deal — Asking Price Is Above Every Maximum Offer";
+  }
+
+  window.deal={
+    arv:n("arv"),
+    rehab:n("rehab"),
+    asking:n("asking"),
+    goal:n("assignmentGoal"),
+    results,
+    best
+  };
+}
+
+function populate(v){ids.forEach(id=>$(id).value=v[id]);calculate()}
+
+function summary(){
+  const d=window.deal;
+  const lines=[
+    "WHOLESALE DEAL SUMMARY",
+    "ARV: "+money(d.arv),
+    "Rehab: "+money(d.rehab),
+    "Seller Asking Price: "+money(d.asking),
+    "Assignment Fee Goal: "+money(d.goal)
+  ];
+
+  d.results.forEach(r=>{
+    lines.push(r.rule+"% Rule Value: "+money(r.value));
+    lines.push("Max Offer @ "+r.rule+"%: "+money(r.offer));
+    lines.push("Deal @ "+r.rule+"%: "+(r.deal?"YES":"NO"));
+    lines.push("Assignment Fee @ "+r.rule+"%: "+money(r.fee));
+  });
+
+  lines.push("Best Rule: "+(d.best?d.best.rule+"%":"No Deal"));
+  return lines.join("\n");
+}
+
+ids.forEach(id=>$(id).addEventListener("input",calculate));
+$("sampleBtn").onclick=()=>{populate(sample);showToast("Sample deal loaded.")};
+$("clearBtn").onclick=()=>{populate({arv:0,rehab:0,asking:0,assignmentGoal:0});showToast("Analyzer cleared.")};
+$("saveBtn").onclick=()=>saveInputs("deba-wholesale",ids);
+$("copyBtn").onclick=()=>copyText(summary(),"Summary copied.");
+$("shareBtn").onclick=()=>copyText(shareLink(ids),"Share link copied.");
+$("printBtn").onclick=()=>window.print();
+
+if(!applyQuery(ids)&&!loadInputs("deba-wholesale",ids))populate(sample);
+else calculate();
+</script>
+</body>
+</html>

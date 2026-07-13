@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d5f6e">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+
+<title>Financed Flip Calculator</title>
+</head>
+<body>
+
+<main class="app-page">
+  <a class="back-link" href="./index.html">← Back to All Calculators</a>
+
+  <section class="hero">
+    <p class="eyebrow">Calculator 2 of 4</p>
+    <h1>Financed Flip Calculator</h1>
+    <p>Estimate hard money financing, acquisition costs, selling costs, cash to close, and net profit.</p>
+    <div class="hero-actions">
+      <button class="btn btn-light" id="clearBtn" type="button">Clear</button>
+      <button class="btn btn-primary" id="sampleBtn" type="button">Load Sample Deal</button>
+    </div>
+  </section>
+
+  <div class="calculator-layout">
+    <section class="main-card">
+      <div class="top-summary">
+        <div class="summary-box primary"><span class="summary-label">Net Profit</span><strong class="summary-value" id="summaryProfit">$0.00</strong></div>
+        <div class="summary-box"><span class="summary-label">Cash to Close</span><strong class="summary-value" id="summaryCash">$0.00</strong></div>
+        <div class="summary-box"><span class="summary-label">Total Investment</span><strong class="summary-value" id="summaryInvestment">$0.00</strong></div>
+      </div>
+
+      <details class="calc-section" open>
+        <summary>
+          <div class="section-head"><span class="section-num">1</span><div><h2>Buy</h2><p>Purchase, financing, and rehab costs</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="field"><label>ARV</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="arv" type="number" value="305000"></div></div>
+            <div class="field"><label>Purchase Price</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="purchasePrice" type="number" value="150000"></div></div>
+            <div class="field"><label>Lender Fee</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="lenderFee" type="number" value="5235"></div></div>
+            <div class="field"><label>Closing Cost %</label><div class="input-wrap"><input class="has-right" id="closingCostPercent" type="number" value="2.5"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>Buy Title Policy %</label><div class="input-wrap"><input class="has-right" id="buyTitlePercent" type="number" value="1"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>Survey & Appraisal</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="survey" type="number" value="1000"></div></div>
+            <div class="field"><label>Insurance & Taxes</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="additional" type="number" value="2000"></div></div>
+            <div class="field"><label>Rehab</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="rehab" type="number" value="80000"></div></div>
+            <div class="field"><label>Hard Money Loan % of ARV</label><div class="input-wrap"><input class="has-right" id="hardMoneyPercent" type="number" value="75"><span class="symbol-right">%</span></div></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">Hard Money Loan</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="hardMoneyLoan">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Closing Cost and Lender Fees</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="closingAndFees">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">LH - Out of Pocket</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="outOfPocket">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Total Cash to Close</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money orange" id="cashToClose">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Buy Total Investment</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="buyInvestment">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head"><span class="section-num">2</span><div><h2>Sell</h2><p>Realtor, title, holding, and seller costs</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="field"><label>Realtor Fees %</label><div class="input-wrap"><input class="has-right" id="realtorPercent" type="number" value="6"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>Sale Title Policy %</label><div class="input-wrap"><input class="has-right" id="saleTitlePercent" type="number" value="1"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>Holding Fees % of Purchase + Rehab</label><div class="input-wrap"><input class="has-right" id="holdingPercent" type="number" value="5"><span class="symbol-right">%</span></div></div>
+            <div class="field"><label>Seller Concessions</label><div class="input-wrap"><span class="symbol-left">$</span><input class="has-left" id="sellerConcessions" type="number" value="0"></div></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">Realtor Fees</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="realtorFees">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Sale Title Policy</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="saleTitle">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Holding Fees</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="holdingFees">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Selling Cost Total</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="sellingCosts">$0.00</div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="calc-section">
+        <summary>
+          <div class="section-head"><span class="section-num">3</span><div><h2>Net Profit</h2><p>Final flip result</p></div></div>
+          <span class="caret">⌄</span>
+        </summary>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="result-item"><span class="result-label">ARV</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="resultArv">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Total Investment</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money" id="totalInvestment">$0.00</div></div></div>
+            <div class="result-item"><span class="result-label">Net Profit</span><div class="output-wrap"><span class="symbol-left">$</span><div class="output money green" id="netProfit">$0.00</div></div></div>
+          </div>
+          <div class="status-pill status-orange" id="dealStatus">Review the deal.</div>
+          <div class="action-grid">
+            <button class="btn btn-outline" id="copyBtn" type="button">Copy Summary</button>
+            <button class="btn btn-outline" id="printBtn" type="button">Print / Save PDF</button>
+            <button class="btn btn-outline" id="saveBtn" type="button">Save Deal</button>
+            <button class="btn btn-primary" id="shareBtn" type="button">Copy Share Link</button>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <aside class="sidebar">
+      <div class="side-card">
+        <h3>Profit Rating</h3>
+        <div class="legend">
+          <div class="legend-item legend-good"><span>Green</span><span>$25,000+</span></div>
+          <div class="legend-item legend-bad"><span>Orange</span><span>$1–$24,999</span></div>
+          <div class="legend-item legend-no"><span>Red</span><span>$0 or below</span></div>
+        </div>
+      </div>
+      <div class="side-card">
+        <h3>Variables</h3>
+        <ul class="tip-list">
+          <li>Holding cost</li><li>Closing cost</li><li>Realtor fees</li>
+          <li>Title policy</li><li>Lender fees</li><li>Seller concessions</li>
+          <li>Survey and appraisal</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./common.js"></script>
+<script src="./calc-utils.js"></script>
+<script>
+const sample={arv:305000,purchasePrice:150000,lenderFee:5235,closingCostPercent:2.5,buyTitlePercent:1,survey:1000,additional:2000,rehab:80000,hardMoneyPercent:75,realtorPercent:6,saleTitlePercent:1,holdingPercent:5,sellerConcessions:0};
+const ids=Object.keys(sample);
+
+function calculate(){
+  const arv=n("arv"),purchase=n("purchasePrice"),lender=n("lenderFee"),closePct=n("closingCostPercent");
+  const buyTitlePct=n("buyTitlePercent"),survey=n("survey"),additional=n("additional"),rehab=n("rehab"),hardPct=n("hardMoneyPercent");
+  const realtorPct=n("realtorPercent"),saleTitlePct=n("saleTitlePercent"),holdingPct=n("holdingPercent"),concessions=n("sellerConcessions");
+
+  const closing=purchase*(closePct/100);
+  const buyTitle=purchase*(buyTitlePct/100);
+  const buyInvestment=purchase+lender+closing+buyTitle+survey+additional+rehab;
+  const hard=arv*(hardPct/100);
+  const closeFees=lender+closing+buyTitle+survey+additional;
+  const oop=Math.max(0,(purchase+rehab)-hard);
+  const cashClose=closeFees+oop;
+
+  const realtor=arv*(realtorPct/100);
+  const saleTitle=arv*(saleTitlePct/100);
+  const holding=(purchase+rehab)*(holdingPct/100);
+  const selling=realtor+saleTitle+holding+concessions;
+  const total=buyInvestment+selling;
+  const profit=arv-total;
+
+  setText("hardMoneyLoan",money(hard));
+  setText("closingAndFees",money(closeFees));
+  setText("outOfPocket",money(oop));
+  setText("cashToClose",money(cashClose));
+  setText("buyInvestment",money(buyInvestment));
+  setText("realtorFees",money(realtor));
+  setText("saleTitle",money(saleTitle));
+  setText("holdingFees",money(holding));
+  setText("sellingCosts",money(selling));
+  setText("resultArv",money(arv));
+  setText("totalInvestment",money(total));
+  setText("netProfit",money(profit));
+  setText("summaryProfit",money(profit));
+  setText("summaryCash",money(cashClose));
+  setText("summaryInvestment",money(total));
+
+  const status=$("dealStatus");
+  status.className="status-pill";
+  if(profit>=25000){
+    status.classList.add("status-green");
+    status.textContent="Good Deal — Estimated Profit Meets the Target";
+  }else if(profit>0){
+    status.classList.add("status-orange");
+    status.textContent="Review Deal — Positive but Limited Profit";
+  }else{
+    status.classList.add("status-red");
+    status.textContent="No Deal — Estimated Profit Is Zero or Negative";
+  }
+
+  window.deal={arv,purchase,rehab,buyInvestment,cashClose,selling,total,profit,hard};
+}
+
+function populate(v){ids.forEach(id=>$(id).value=v[id]);calculate()}
+
+function summary(){
+  const d=window.deal;
+  return [
+    "FINANCED FLIP SUMMARY",
+    "ARV: "+money(d.arv),
+    "Purchase Price: "+money(d.purchase),
+    "Rehab: "+money(d.rehab),
+    "Hard Money Loan: "+money(d.hard),
+    "Buy Total Investment: "+money(d.buyInvestment),
+    "Cash to Close: "+money(d.cashClose),
+    "Selling Costs: "+money(d.selling),
+    "Total Investment: "+money(d.total),
+    "Net Profit: "+money(d.profit)
+  ].join("\n");
+}
+
+ids.forEach(id=>$(id).addEventListener("input",calculate));
+$("sampleBtn").onclick=()=>{populate(sample);showToast("Sample deal loaded.")};
+$("clearBtn").onclick=()=>{const blank={};ids.forEach(id=>blank[id]=0);populate(blank);showToast("Calculator cleared.")};
+$("saveBtn").onclick=()=>saveInputs("deba-financed-flip",ids);
+$("copyBtn").onclick=()=>copyText(summary(),"Summary copied.");
+$("shareBtn").onclick=()=>copyText(shareLink(ids),"Share link copied.");
+$("printBtn").onclick=()=>window.print();
+
+if(!applyQuery(ids)&&!loadInputs("deba-financed-flip",ids))populate(sample);
+else calculate();
+</script>
+</body>
+</html>

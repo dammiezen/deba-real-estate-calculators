@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d5f6e">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+
+<title>Deba Real Estate Calculators</title>
+</head>
+<body>
+<main class="app-page">
+  <section class="hero">
+    <p class="eyebrow">Free Installable Real Estate App</p>
+    <h1>Deba Real Estate Calculators</h1>
+    <p>
+      Analyze BRRRR deals, financed flips, cash purchases, and wholesale opportunities
+      from one simple app. The app can be installed free on Android and iPhone.
+    </p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" type="button" id="installAppBtn">Install Free App</button>
+    </div>
+  </section>
+
+  <section class="home-grid">
+    <article class="app-card">
+      <div class="app-icon">BR</div>
+      <h2>BRRRR Investment Calculator</h2>
+      <p>Estimate total investment, refinance proceeds, cash to close, equity, monthly cash flow, NOI, and ROI.</p>
+      <a class="btn btn-teal" href="./brrrr.html">Open Calculator</a>
+    </article>
+
+    <article class="app-card">
+      <div class="app-icon">FF</div>
+      <h2>Financed Flip Calculator</h2>
+      <p>Calculate hard money financing, purchase costs, selling costs, cash to close, and estimated net profit.</p>
+      <a class="btn btn-teal" href="./financed-flip.html">Open Calculator</a>
+    </article>
+
+    <article class="app-card">
+      <div class="app-icon">CB</div>
+      <h2>Cash Buy Flip Calculator</h2>
+      <p>Analyze a cash purchase, renovation budget, optional expenses, resale costs, and estimated net profit.</p>
+      <a class="btn btn-teal" href="./cash-buy.html">Open Calculator</a>
+    </article>
+
+    <article class="app-card">
+      <div class="app-icon">WS</div>
+      <h2>Wholesale Master Deal Analyzer</h2>
+      <p>Test a wholesale deal against the 65%, 70%, and 75% rules and identify the first workable offer level.</p>
+      <a class="btn btn-teal" href="./wholesale.html">Open Analyzer</a>
+    </article>
+  </section>
+
+  <section class="install-card">
+    <div>
+      <h2>Install It Free on Android or iPhone</h2>
+      <p>No App Store or Google Play account is required. Install it directly from the public website link.</p>
+    </div>
+    <button class="btn btn-primary" type="button" onclick="document.getElementById('installAppBtn').click()">Installation Guide</button>
+  </section>
+</main>
+
+<div class="install-help" id="installHelp">
+  <div class="install-modal">
+    <h2>Install the Free App</h2>
+    <p><strong>Android:</strong> Open this site in Chrome, tap the menu, then choose <em>Install app</em> or <em>Add to Home screen</em>.</p>
+    <p><strong>iPhone:</strong> Open this site in Safari, tap Share, choose <em>Add to Home Screen</em>, then tap Add.</p>
+    <button class="btn btn-teal" type="button" id="closeInstallHelp">Close</button>
+  </div>
+</div>
+
+<script src="./common.js"></script>
+</body>
+</html>
