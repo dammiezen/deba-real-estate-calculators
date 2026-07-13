@@ -1,4 +1,4 @@
-const CACHE_NAME = "deba-principles-pwa-v3";
+const CACHE_NAME = "deba-principles-pwa-v4";
 const APP_FILES = [
   "./",
   "./index.html",
