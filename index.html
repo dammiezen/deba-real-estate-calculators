@@ -1,81 +1,2199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d5f6e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Deba Real Estate">
+  <meta name="description" content="Private real estate calculator toolkit for authorized Roadmap to Real Estate Investing students.">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0d5f6e">
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css">
+  <title>Deba Douglas Principles of Real Estate</title>
 
-<title>Deba Real Estate Calculators</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --teal:#0d5f6e;
+      --teal-dark:#073f49;
+      --gold:#d4a020;
+      --yellow:#ffd42a;
+      --salmon:#e8a090;
+      --cream:#fbf5ee;
+      --white:#ffffff;
+      --ink:#17383d;
+      --muted:#687b7f;
+      --line:rgba(13,95,110,.14);
+      --soft:#f3f8f7;
+      --blue:#e8f1fb;
+      --green:#e6f7e9;
+      --green-text:#16723b;
+      --orange:#fff1d5;
+      --orange-text:#986100;
+      --red:#ffe4e1;
+      --red-text:#b82c22;
+      --shadow:0 18px 48px rgba(7,63,73,.11);
+      --radius-xl:32px;
+      --radius-lg:25px;
+      --radius-md:18px;
+      --safe-bottom:env(safe-area-inset-bottom, 0px);
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      font-family:"Poppins",Arial,sans-serif;
+      background:
+        radial-gradient(circle at top right,rgba(232,160,144,.22),transparent 32%),
+        linear-gradient(180deg,#ffffff 0%,var(--cream) 100%);
+    }
+
+    button,input,select{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    [hidden]{display:none!important}
+
+    .access-gate{
+      position:fixed;
+      inset:0;
+      z-index:10000;
+      display:grid;
+      place-items:center;
+      overflow:auto;
+      padding:24px;
+      background:
+        radial-gradient(circle at 85% 10%,rgba(232,160,144,.28),transparent 34%),
+        linear-gradient(135deg,#052f37,#0d5f6e);
+    }
+
+    .access-card{
+      width:min(760px,100%);
+      padding:clamp(24px,5vw,46px);
+      border-radius:30px;
+      background:rgba(255,255,255,.98);
+      box-shadow:0 30px 80px rgba(0,0,0,.24);
+    }
+
+    .gate-logo{
+      width:min(360px,80%);
+      height:auto;
+      display:block;
+      margin:0 auto 24px;
+    }
+
+    .access-card h1{
+      margin:0 0 10px;
+      color:var(--teal-dark);
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:clamp(2rem,5vw,3.6rem);
+      line-height:1.03;
+      text-align:center;
+    }
+
+    .gate-sub{
+      margin:0 auto 22px;
+      max-width:600px;
+      color:var(--muted);
+      text-align:center;
+      font-size:.9rem;
+    }
+
+    .legal-box{
+      max-height:235px;
+      overflow:auto;
+      margin:0 0 20px;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:var(--soft);
+      color:#506568;
+      font-size:.76rem;
+      line-height:1.65;
+    }
+
+    .legal-box strong{color:var(--teal-dark)}
+
+    .gate-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:13px;
+    }
+
+    .gate-field label,
+    .field label{
+      display:block;
+      margin-bottom:7px;
+      color:#284d53;
+      font-size:.78rem;
+      font-weight:800;
+    }
+
+    input,select{
+      width:100%;
+      min-height:50px;
+      padding:0 14px;
+      border:1px solid rgba(13,95,110,.17);
+      border-radius:14px;
+      outline:none;
+      color:var(--ink);
+      background:#f2f8f7;
+      font-size:.9rem;
+      font-weight:700;
+      transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
+    }
+
+    input:focus,select:focus{
+      border-color:var(--teal);
+      background:#fff;
+      box-shadow:0 0 0 4px rgba(13,95,110,.08);
+    }
+
+    .agreement{
+      display:flex;
+      gap:11px;
+      align-items:flex-start;
+      margin:17px 0;
+      color:#52676a;
+      font-size:.75rem;
+      line-height:1.5;
+    }
+
+    .agreement input{
+      width:19px;
+      min-height:19px;
+      height:19px;
+      flex:0 0 19px;
+      margin-top:1px;
+      accent-color:var(--teal);
+    }
+
+    .gate-button,.app-button{
+      min-height:46px;
+      border:0;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:800;
+      transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+    }
+
+    .gate-button{
+      width:100%;
+      color:#2f280d;
+      background:var(--gold);
+      box-shadow:0 10px 24px rgba(212,160,32,.25);
+    }
+
+    .gate-button:hover,.app-button:hover{transform:translateY(-1px)}
+
+    .gate-error{
+      min-height:22px;
+      margin:10px 0 0;
+      color:#ba2e22;
+      font-size:.76rem;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .app-shell{
+      min-height:100vh;
+      padding-bottom:calc(50px + var(--safe-bottom));
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      border-bottom:1px solid rgba(13,95,110,.10);
+      background:rgba(255,255,255,.93);
+      backdrop-filter:blur(15px);
+    }
+
+    .topbar-inner{
+      width:min(1420px,calc(100% - 28px));
+      margin:0 auto;
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      min-width:0;
+      text-decoration:none;
+    }
+
+    .brand img{
+      width:210px;
+      max-width:43vw;
+      height:auto;
+      display:block;
+    }
+
+    .authorized{
+      display:block;
+      color:var(--muted);
+      font-size:.68rem;
+      font-weight:700;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .topbar-actions{
+      display:flex;
+      gap:8px;
+      flex:0 0 auto;
+    }
+
+    .app-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 15px;
+      color:var(--teal-dark);
+      background:var(--soft);
+      font-size:.75rem;
+    }
+
+    .app-button.primary{
+      color:#2f280d;
+      background:var(--gold);
+    }
+
+    .app-button.outline{
+      border:1px solid var(--line);
+      background:#fff;
+    }
+
+    .app-main{
+      width:min(1420px,calc(100% - 28px));
+      margin:0 auto;
+      padding:24px 0 0;
+    }
+
+    .view{animation:fadeUp .28s ease}
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(7px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .dashboard-hero{
+      position:relative;
+      overflow:hidden;
+      padding:clamp(30px,6vw,70px);
+      border-radius:var(--radius-xl);
+      color:#fff;
+      background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+      box-shadow:var(--shadow);
+    }
+
+    .dashboard-hero::after{
+      content:"";
+      position:absolute;
+      width:330px;
+      height:330px;
+      top:-190px;
+      right:-85px;
+      border:54px solid rgba(255,255,255,.06);
+      border-radius:50%;
+    }
+
+    .eyebrow{
+      position:relative;
+      z-index:1;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 15px;
+      color:#ffe8a9;
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:28px;
+      height:2px;
+      background:var(--gold);
+    }
+
+    .dashboard-hero h1{
+      position:relative;
+      z-index:1;
+      max-width:900px;
+      margin:0 0 14px;
+      color:#fff!important;
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:clamp(2.3rem,6vw,5rem);
+      line-height:.99;
+      letter-spacing:-.04em;
+    }
+
+    .dashboard-hero p{
+      position:relative;
+      z-index:1;
+      max-width:760px;
+      margin:0;
+      color:rgba(255,255,255,.82);
+      font-size:.96rem;
+      line-height:1.7;
+    }
+
+    .calculator-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+      margin-top:24px;
+    }
+
+    .calculator-card{
+      display:flex;
+      min-height:255px;
+      flex-direction:column;
+      padding:25px;
+      border:1px solid rgba(13,95,110,.11);
+      border-radius:var(--radius-lg);
+      background:rgba(255,255,255,.95);
+      box-shadow:0 14px 38px rgba(7,63,73,.07);
+      transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+    }
+
+    .calculator-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(13,95,110,.24);
+      box-shadow:0 18px 44px rgba(7,63,73,.1);
+    }
+
+    .card-icon{
+      display:grid;
+      width:50px;
+      height:50px;
+      place-items:center;
+      margin-bottom:17px;
+      border-radius:16px;
+      color:var(--teal);
+      background:var(--soft);
+      font-size:1.25rem;
+      font-weight:800;
+    }
+
+    .calculator-card h2{
+      margin:0 0 8px;
+      color:var(--teal-dark);
+      font-size:1.2rem;
+      line-height:1.25;
+    }
+
+    .calculator-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.8rem;
+      line-height:1.6;
+    }
+
+    .calculator-card .app-button{
+      align-self:flex-start;
+      margin-top:auto;
+    }
+
+    .student-notice{
+      margin-top:20px;
+      padding:18px 20px;
+      border-left:4px solid var(--gold);
+      border-radius:0 17px 17px 0;
+      color:#655f4d;
+      background:#fff7df;
+      font-size:.76rem;
+      line-height:1.6;
+    }
+
+    .calc-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+      padding:22px 24px;
+      border-radius:23px;
+      color:#fff;
+      background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+      box-shadow:var(--shadow);
+    }
+
+    .calc-header h1{
+      margin:0 0 5px;
+      color:#fff!important;
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:clamp(1.7rem,4vw,3.1rem);
+      line-height:1.05;
+    }
+
+    .calc-header p{
+      margin:0;
+      color:rgba(255,255,255,.77);
+      font-size:.78rem;
+    }
+
+    .calc-header-actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:8px;
+    }
+
+    .calc-header .app-button{
+      color:#fff;
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .calc-header .app-button.primary{
+      color:#2f280d;
+      background:var(--gold);
+      border-color:var(--gold);
+    }
+
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:13px;
+      margin-bottom:18px;
+    }
+
+    .summary-card{
+      padding:18px;
+      border:1px solid rgba(13,95,110,.09);
+      border-radius:19px;
+      background:var(--soft);
+    }
+
+    .summary-card.primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--teal-dark),var(--teal));
+      border:0;
+    }
+
+    .summary-label{
+      display:block;
+      margin-bottom:6px;
+      color:var(--muted);
+      font-size:.68rem;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    .summary-card.primary .summary-label{color:rgba(255,255,255,.68)}
+
+    .summary-value{
+      display:block;
+      font-size:clamp(1.2rem,2.4vw,1.75rem);
+      font-weight:800;
+      line-height:1.15;
+      word-break:break-word;
+    }
+
+    .calc-layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:20px;
+      align-items:start;
+    }
+
+    .calc-main{
+      padding:22px;
+      border:1px solid rgba(13,95,110,.10);
+      border-radius:var(--radius-lg);
+      background:rgba(255,255,255,.95);
+      box-shadow:0 14px 38px rgba(7,63,73,.07);
+    }
+
+    .calc-side{
+      position:sticky;
+      top:94px;
+      display:grid;
+      gap:15px;
+    }
+
+    .side-card{
+      padding:19px;
+      border:1px solid rgba(13,95,110,.10);
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 12px 30px rgba(7,63,73,.06);
+    }
+
+    .side-card h3{
+      margin:0 0 12px;
+      color:var(--teal-dark);
+      font-size:.95rem;
+    }
+
+    .side-card p,
+    .side-card li{
+      color:var(--muted);
+      font-size:.73rem;
+      line-height:1.55;
+    }
+
+    .side-card ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    details.calc-section{
+      overflow:hidden;
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#fff;
+    }
+
+    details.calc-section:first-child{margin-top:0}
+
+    .section-summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      padding:18px 19px;
+      cursor:pointer;
+      list-style:none;
+      background:linear-gradient(180deg,#fff,#f8fbfa);
+      user-select:none;
+    }
+
+    .section-summary::-webkit-details-marker{display:none}
+
+    .section-summary-left{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      min-width:0;
+    }
+
+    .section-number{
+      display:grid;
+      width:36px;
+      height:36px;
+      flex:0 0 36px;
+      place-items:center;
+      border-radius:11px;
+      color:#fff;
+      background:var(--teal);
+      font-size:.78rem;
+      font-weight:800;
+    }
+
+    .section-summary h2{
+      margin:0 0 3px;
+      color:var(--teal-dark);
+      font-size:1rem;
+      line-height:1.25;
+    }
+
+    .section-summary p{
+      margin:0;
+      color:var(--muted);
+      font-size:.69rem;
+    }
+
+    .caret{
+      display:grid;
+      width:34px;
+      height:34px;
+      flex:0 0 34px;
+      place-items:center;
+      border-radius:11px;
+      color:var(--teal);
+      background:var(--soft);
+      font-size:1.12rem;
+      font-weight:800;
+      transition:transform .18s ease;
+    }
+
+    details[open] .caret{transform:rotate(180deg)}
+
+    .section-body{
+      padding:19px;
+      border-top:1px solid var(--line);
+    }
+
+    .field-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:13px;
+    }
+
+    .field.full{grid-column:1/-1}
+
+    .input-wrap,.output-wrap{position:relative}
+
+    .prefix,.suffix{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      color:#607477;
+      font-size:.78rem;
+      font-weight:800;
+      pointer-events:none;
+    }
+
+    .prefix{left:13px}
+    .suffix{right:13px}
+    input.with-prefix{padding-left:30px}
+    input.with-suffix{padding-right:36px}
+
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:13px;
+    }
+
+    .result-item label{
+      display:block;
+      margin-bottom:7px;
+      color:#284d53;
+      font-size:.74rem;
+      font-weight:800;
+    }
+
+    .output{
+      min-height:50px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:0 13px;
+      border:1px solid rgba(13,95,110,.10);
+      border-radius:14px;
+      color:var(--ink);
+      background:var(--blue);
+      font-size:.88rem;
+      font-weight:800;
+      text-align:right;
+    }
+
+    .output.money{padding-left:30px}
+    .output.green{color:var(--green-text);background:var(--green)}
+    .output.orange{color:var(--orange-text);background:var(--orange)}
+    .output.red{color:var(--red-text);background:var(--red)}
+
+    .status{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      margin-top:13px;
+      padding:13px 14px;
+      border-radius:15px;
+      font-size:.78rem;
+      font-weight:800;
+    }
+
+    .status::before{
+      content:"";
+      width:9px;
+      height:9px;
+      flex:0 0 9px;
+      border-radius:50%;
+      background:currentColor;
+      box-shadow:0 0 0 5px currentColor;
+      opacity:.2;
+    }
+
+    .status.green{color:var(--green-text);background:var(--green)}
+    .status.orange{color:var(--orange-text);background:var(--orange)}
+    .status.red{color:var(--red-text);background:var(--red)}
+
+    .action-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-top:14px;
+    }
+
+    .action-grid .app-button{
+      width:100%;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+
+    .action-grid .app-button.primary{
+      border-color:var(--gold);
+      background:var(--gold);
+    }
+
+    .rule-table{
+      display:grid;
+      gap:12px;
+    }
+
+    .rule-card{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:17px;
+      background:#fff;
+    }
+
+    .rule-card h3{
+      margin:0 0 12px;
+      color:var(--teal-dark);
+      font-size:.95rem;
+    }
+
+    .rule-rows{
+      display:grid;
+      gap:8px;
+    }
+
+    .rule-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:9px 11px;
+      border-radius:11px;
+      background:var(--soft);
+      font-size:.73rem;
+    }
+
+    .rule-row span:first-child{color:var(--muted)}
+    .rule-row strong{text-align:right}
+
+    .legal-footer{
+      margin-top:20px;
+      padding:16px 18px;
+      border-radius:17px;
+      color:#6b6655;
+      background:#fff7df;
+      font-size:.68rem;
+      line-height:1.55;
+      text-align:center;
+    }
+
+    .install-modal{
+      position:fixed;
+      inset:0;
+      z-index:9000;
+      display:grid;
+      place-items:center;
+      padding:22px;
+      background:rgba(5,47,55,.70);
+      backdrop-filter:blur(8px);
+    }
+
+    .modal-card{
+      width:min(520px,100%);
+      padding:25px;
+      border-radius:24px;
+      background:#fff;
+      box-shadow:0 24px 70px rgba(0,0,0,.22);
+    }
+
+    .modal-card h2{
+      margin:0 0 8px;
+      color:var(--teal-dark);
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:1.7rem;
+    }
+
+    .modal-card p,.modal-card li{
+      color:var(--muted);
+      font-size:.78rem;
+      line-height:1.6;
+    }
+
+    .modal-actions{
+      display:flex;
+      gap:8px;
+      justify-content:flex-end;
+      margin-top:17px;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:calc(22px + var(--safe-bottom));
+      z-index:12000;
+      max-width:calc(100% - 28px);
+      padding:11px 17px;
+      border-radius:999px;
+      color:#fff;
+      background:var(--teal-dark);
+      box-shadow:0 13px 30px rgba(7,63,73,.25);
+      font-size:.76rem;
+      font-weight:800;
+      opacity:0;
+      pointer-events:none;
+      transform:translate(-50%,13px);
+      transition:opacity .18s ease,transform .18s ease;
+    }
+
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+
+    @media(max-width:1020px){
+      .calc-layout{grid-template-columns:1fr}
+      .calc-side{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media(max-width:760px){
+      .gate-grid,
+      .calculator-grid,
+      .summary-grid,
+      .field-grid,
+      .result-grid,
+      .calc-side{
+        grid-template-columns:1fr;
+      }
+
+      .field.full{grid-column:auto}
+
+      .topbar-inner{
+        min-height:68px;
+      }
+
+      .brand img{
+        width:160px;
+        max-width:44vw;
+      }
+
+      .authorized{display:none}
+
+      .topbar-actions .app-button{
+        min-height:39px;
+        padding:0 11px;
+        font-size:.67rem;
+      }
+
+      .app-main{
+        width:min(100% - 16px,1420px);
+        padding-top:10px;
+      }
+
+      .dashboard-hero{
+        padding:30px 22px;
+        border-radius:24px;
+      }
+
+      .calculator-card{min-height:230px}
+
+      .calc-header{
+        display:block;
+        padding:20px;
+      }
+
+      .calc-header-actions{
+        justify-content:flex-start;
+        margin-top:15px;
+      }
+
+      .calc-main{padding:14px}
+      .section-summary{padding:16px 14px}
+      .section-body{padding:14px}
+    }
+
+    @media(max-width:500px){
+      .access-gate{padding:10px}
+      .access-card{padding:20px 16px;border-radius:22px}
+      .legal-box{max-height:210px}
+      .topbar-actions #logoutButton{display:none}
+      .calc-header-actions,
+      .action-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+      }
+      .calc-header-actions .app-button{width:100%}
+      .section-summary p{display:none}
+      .modal-actions{display:grid;grid-template-columns:1fr}
+      .modal-actions .app-button{width:100%}
+    }
+
+    @media print{
+      body{background:#fff}
+      .topbar,
+      .calc-header-actions,
+      .action-grid,
+      .calc-side,
+      .toast,
+      .install-modal{
+        display:none!important;
+      }
+
+      .app-main{width:100%;padding:0}
+      .calc-header{box-shadow:none}
+      details.calc-section{break-inside:avoid}
+      details.calc-section:not([open]) .section-body{display:block}
+      .legal-footer{border:1px solid #ddd}
+    }
+  </style>
 </head>
+
 <body>
-<main class="app-page">
-  <section class="hero">
-    <p class="eyebrow">Free Installable Real Estate App</p>
-    <h1>Deba Real Estate Calculators</h1>
-    <p>
-      Analyze BRRRR deals, financed flips, cash purchases, and wholesale opportunities
-      from one simple app. The app can be installed free on Android and iPhone.
-    </p>
-    <div class="hero-actions">
-      <button class="btn btn-primary" type="button" id="installAppBtn">Install Free App</button>
+  <section class="access-gate" id="accessGate">
+    <div class="access-card">
+      <img class="gate-logo" src="assets/deba-logo.png" alt="Deba Douglas Principles of Real Estate">
+      <h1>Student Access</h1>
+      <p class="gate-sub">
+        This private calculator toolkit is provided exclusively to authorized
+        Roadmap to Real Estate Investing students.
+      </p>
+
+      <div class="legal-box">
+        <strong>PRIVATE AND CONFIDENTIAL — AUTHORIZED STUDENT USE ONLY</strong><br><br>
+        The Deba Douglas Principles of Real Estate calculator application, including
+        its original software code, written content, graphics, layouts, reports, and
+        supporting materials, is a proprietary educational resource of Deba Douglas
+        and Douglas Dwellings.<br><br>
+
+        Access is granted only to currently authorized students enrolled in the
+        <strong>Roadmap to Real Estate Investing</strong> program for personal,
+        non-commercial educational use. You may not share the app link, access code,
+        screenshots, exports, reports, source code, or any part of this application
+        with an unauthorized person. You may not reproduce, publish, sell, sublicense,
+        distribute, publicly display, modify, or provide access to these materials
+        without prior written permission.<br><br>
+
+        Unauthorized access or distribution may result in immediate removal of access.
+        Douglas Dwellings reserves the right to pursue available legal remedies where
+        appropriate.<br><br>
+
+        All calculator results are educational estimates only and are not financial,
+        legal, tax, lending, appraisal, accounting, or investment advice. Verify all
+        figures independently and consult qualified professionals before making an
+        investment decision.
+      </div>
+
+      <div class="gate-grid">
+        <div class="gate-field">
+          <label for="studentName">Authorized Student Name</label>
+          <input id="studentName" type="text" autocomplete="name" placeholder="Enter your full name">
+        </div>
+
+        <div class="gate-field">
+          <label for="studentCode">Student Access Code</label>
+          <input id="studentCode" type="password" autocomplete="current-password" placeholder="Enter access code">
+        </div>
+      </div>
+
+      <label class="agreement">
+        <input id="legalAgreement" type="checkbox">
+        <span>
+          I confirm that I am an authorized Roadmap to Real Estate Investing student,
+          and I agree not to share this application or its access information.
+        </span>
+      </label>
+
+      <button class="gate-button" id="accessButton" type="button">
+        I Agree & Continue
+      </button>
+
+      <p class="gate-error" id="gateError"></p>
     </div>
   </section>
 
-  <section class="home-grid">
-    <article class="app-card">
-      <div class="app-icon">BR</div>
-      <h2>BRRRR Investment Calculator</h2>
-      <p>Estimate total investment, refinance proceeds, cash to close, equity, monthly cash flow, NOI, and ROI.</p>
-      <a class="btn btn-teal" href="./brrrr.html">Open Calculator</a>
-    </article>
+  <div class="app-shell" id="appShell" hidden>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#home" aria-label="Return to calculator dashboard">
+          <div>
+            <img src="assets/deba-logo.png" alt="Deba Douglas Principles of Real Estate">
+            <span class="authorized" id="authorizedStudent"></span>
+          </div>
+        </a>
 
-    <article class="app-card">
-      <div class="app-icon">FF</div>
-      <h2>Financed Flip Calculator</h2>
-      <p>Calculate hard money financing, purchase costs, selling costs, cash to close, and estimated net profit.</p>
-      <a class="btn btn-teal" href="./financed-flip.html">Open Calculator</a>
-    </article>
+        <div class="topbar-actions">
+          <button class="app-button primary" id="installButton" type="button">
+            Install App
+          </button>
+          <button class="app-button outline" id="logoutButton" type="button">
+            Lock App
+          </button>
+        </div>
+      </div>
+    </header>
 
-    <article class="app-card">
-      <div class="app-icon">CB</div>
-      <h2>Cash Buy Flip Calculator</h2>
-      <p>Analyze a cash purchase, renovation budget, optional expenses, resale costs, and estimated net profit.</p>
-      <a class="btn btn-teal" href="./cash-buy.html">Open Calculator</a>
-    </article>
+    <main class="app-main">
+      <section class="view" id="homeView">
+        <div class="dashboard-hero">
+          <p class="eyebrow">Private Student Calculator Toolkit</p>
+          <h1>Four Calculators. One Real Estate App.</h1>
+          <p>
+            Analyze BRRRR opportunities, financed flips, cash purchases, and wholesale
+            deals from one installable app built for Roadmap to Real Estate Investing students.
+          </p>
+        </div>
 
-    <article class="app-card">
-      <div class="app-icon">WS</div>
-      <h2>Wholesale Master Deal Analyzer</h2>
-      <p>Test a wholesale deal against the 65%, 70%, and 75% rules and identify the first workable offer level.</p>
-      <a class="btn btn-teal" href="./wholesale.html">Open Analyzer</a>
-    </article>
-  </section>
+        <div class="calculator-grid">
+          <article class="calculator-card">
+            <span class="card-icon">B</span>
+            <h2>BRRRR Investment Calculator</h2>
+            <p>
+              Estimate total investment, refinance proceeds, equity, monthly cash flow,
+              annual NOI, and cash-on-cash return.
+            </p>
+            <a class="app-button primary" href="#brrrr">Open Calculator</a>
+          </article>
 
-  <section class="install-card">
-    <div>
-      <h2>Install It Free on Android or iPhone</h2>
-      <p>No App Store or Google Play account is required. Install it directly from the public website link.</p>
-    </div>
-    <button class="btn btn-primary" type="button" onclick="document.getElementById('installAppBtn').click()">Installation Guide</button>
-  </section>
-</main>
+          <article class="calculator-card">
+            <span class="card-icon">F</span>
+            <h2>Financed Flip Calculator</h2>
+            <p>
+              Analyze a hard-money purchase, cash to close, selling costs, total investment,
+              and projected net profit.
+            </p>
+            <a class="app-button primary" href="#financed-flip">Open Calculator</a>
+          </article>
 
-<div class="install-help" id="installHelp">
-  <div class="install-modal">
-    <h2>Install the Free App</h2>
-    <p><strong>Android:</strong> Open this site in Chrome, tap the menu, then choose <em>Install app</em> or <em>Add to Home screen</em>.</p>
-    <p><strong>iPhone:</strong> Open this site in Safari, tap Share, choose <em>Add to Home Screen</em>, then tap Add.</p>
-    <button class="btn btn-teal" type="button" id="closeInstallHelp">Close</button>
+          <article class="calculator-card">
+            <span class="card-icon">C</span>
+            <h2>Cash Buy Flip Calculator</h2>
+            <p>
+              Calculate acquisition, rehab, optional holding costs, selling costs,
+              and projected profit for an all-cash purchase.
+            </p>
+            <a class="app-button primary" href="#cash-buy">Open Calculator</a>
+          </article>
+
+          <article class="calculator-card">
+            <span class="card-icon">W</span>
+            <h2>Wholesale Master Deal Analyzer</h2>
+            <p>
+              Test a seller’s asking price against the 65%, 70%, and 75% rules and
+              identify the best viable wholesale rule.
+            </p>
+            <a class="app-button primary" href="#wholesale">Open Calculator</a>
+          </article>
+        </div>
+
+        <div class="student-notice">
+          <strong>Authorized student reminder:</strong> This app, access code, calculator
+          screenshots, reports, and exported results must not be shared with anyone outside
+          the Roadmap to Real Estate Investing program.
+        </div>
+      </section>
+
+      <!-- BRRRR -->
+      <section class="view calculator-view" id="brrrrView" hidden>
+        <div class="calc-header">
+          <div>
+            <h1>BRRRR Investment Calculator</h1>
+            <p>Buy • Rehab • Rent • Refinance • Repeat</p>
+          </div>
+          <div class="calc-header-actions">
+            <a class="app-button" href="#home">Back</a>
+            <button class="app-button" type="button" data-action="sample" data-calc="brrrr">Sample</button>
+            <button class="app-button" type="button" data-action="clear" data-calc="brrrr">Clear</button>
+            <button class="app-button primary" type="button" data-action="save" data-calc="brrrr">Save</button>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card primary">
+            <span class="summary-label">Monthly Cash Flow</span>
+            <strong class="summary-value" id="b_summaryCashFlow">$0.00</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Cash to Close</span>
+            <strong class="summary-value" id="b_summaryCashClose">$0.00</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Cash-on-Cash ROI</span>
+            <strong class="summary-value" id="b_summaryRoi">0.00%</strong>
+          </div>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-main">
+            <details class="calc-section" open>
+              <summary class="section-summary">
+                <div class="section-summary-left">
+                  <span class="section-number">1</span>
+                  <div>
+                    <h2>Purchase & Rehab</h2>
+                    <p>Enter ARV, purchase, rehab, and acquisition costs.</p>
+                  </div>
+                </div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="b_arv">After Repair Value (ARV)</label>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_arv" type="number" min="0" step="100"></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_purchase">Purchase Price</label>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_purchase" type="number" min="0" step="100"></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_rehab">Rehab Budget</label>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_rehab" type="number" min="0" step="100"></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_hmlPct">Hard Money Loan % of ARV</label>
+                    <div class="input-wrap"><input class="with-suffix" id="b_hmlPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_lenderFee">Lender Fee</label>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_lenderFee" type="number" min="0" step="1"></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_closingPct">Closing Cost %</label>
+                    <div class="input-wrap"><input class="with-suffix" id="b_closingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_survey">Survey & Appraisal</label>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_survey" type="number" min="0" step="1"></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_additional">Insurance, Taxes & Other</label>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_additional" type="number" min="0" step="1"></div>
+                  </div>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-item"><label>Hard Money Loan</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_hml">$0.00</div></div></div>
+                  <div class="result-item"><label>Total Investment</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_totalInvestment">$0.00</div></div></div>
+                  <div class="result-item"><label>Financing Gap</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_gap">$0.00</div></div></div>
+                  <div class="result-item"><label>Total Cash to Close</label><div class="output-wrap"><span class="prefix">$</span><div class="output money orange" id="b_cashClose">$0.00</div></div></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="calc-section">
+              <summary class="section-summary">
+                <div class="section-summary-left">
+                  <span class="section-number">2</span>
+                  <div>
+                    <h2>Refinance Information</h2>
+                    <p>Compare two refinance LTV scenarios.</p>
+                  </div>
+                </div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field">
+                    <label for="b_refiCost">Cost to Refinance</label>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_refiCost" type="number" min="0" step="1"></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_holdingPct">Holding Cost % of Total Investment</label>
+                    <div class="input-wrap"><input class="with-suffix" id="b_holdingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_ltv1">LTV Scenario 1</label>
+                    <div class="input-wrap"><input class="with-suffix" id="b_ltv1" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                  </div>
+                  <div class="field">
+                    <label for="b_ltv2">LTV Scenario 2</label>
+                    <div class="input-wrap"><input class="with-suffix" id="b_ltv2" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                  </div>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-item"><label>Holding Cost</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_holding">$0.00</div></div></div>
+                  <div class="result-item"><label>Scenario 1 Loan</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_loan1">$0.00</div></div></div>
+                  <div class="result-item"><label>Cash in Deal / Cash Back — Scenario 1</label><div class="output-wrap"><span class="prefix">$</span><div class="output money green" id="b_cashBack1">$0.00</div></div></div>
+                  <div class="result-item"><label>Equity — Scenario 1</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_equity1">$0.00</div></div></div>
+                  <div class="result-item"><label>Scenario 2 Loan</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_loan2">$0.00</div></div></div>
+                  <div class="result-item"><label>Cash in Deal / Cash Back — Scenario 2</label><div class="output-wrap"><span class="prefix">$</span><div class="output money green" id="b_cashBack2">$0.00</div></div></div>
+                  <div class="result-item"><label>Equity — Scenario 2</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_equity2">$0.00</div></div></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="calc-section">
+              <summary class="section-summary">
+                <div class="section-summary-left">
+                  <span class="section-number">3</span>
+                  <div>
+                    <h2>Operating Cash Flow</h2>
+                    <p>Enter rent, financing, and monthly expenses.</p>
+                  </div>
+                </div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field"><label for="b_rent">Market Rent</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_rent" type="number" min="0" step="10"></div></div>
+                  <div class="field"><label for="b_rate">Interest Rate</label><div class="input-wrap"><input class="with-suffix" id="b_rate" type="number" min="0" max="30" step=".01"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="b_term">Term</label><div class="input-wrap"><input class="with-suffix" id="b_term" type="number" min="1" max="50" step="1"><span class="suffix">yrs</span></div></div>
+                  <div class="field"><label for="b_taxes">Monthly Taxes</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_taxes" type="number" min="0" step="1"></div></div>
+                  <div class="field"><label for="b_insurance">Monthly Insurance</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_insurance" type="number" min="0" step="1"></div></div>
+                  <div class="field"><label for="b_hoa">Monthly HOA</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_hoa" type="number" min="0" step="1"></div></div>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-item"><label>Principal & Interest</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_pi">$0.00</div></div></div>
+                  <div class="result-item"><label>Total Monthly Expenses</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_expenses">$0.00</div></div></div>
+                  <div class="result-item"><label>Monthly Cash Flow</label><div class="output-wrap"><span class="prefix">$</span><div class="output money green" id="b_cashFlow">$0.00</div></div></div>
+                  <div class="result-item"><label>Annual NOI</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="b_noi">$0.00</div></div></div>
+                  <div class="result-item"><label>Cash-on-Cash ROI</label><div class="output" id="b_roi">0.00%</div></div>
+                </div>
+                <div class="status orange" id="b_status">Review the deal.</div>
+              </div>
+            </details>
+
+            <div class="action-grid">
+              <button class="app-button" type="button" data-action="copy" data-calc="brrrr">Copy Summary</button>
+              <button class="app-button" type="button" data-action="print" data-calc="brrrr">Print / Save PDF</button>
+            </div>
+          </div>
+
+          <aside class="calc-side">
+            <div class="side-card">
+              <h3>Deal Rating</h3>
+              <p><strong>Green:</strong> $300+ monthly cash flow</p>
+              <p><strong>Orange:</strong> $0–$299 monthly cash flow</p>
+              <p><strong>Red:</strong> Negative monthly cash flow</p>
+            </div>
+            <div class="side-card">
+              <h3>Reminder</h3>
+              <ul>
+                <li>Verify ARV and rent with current market data.</li>
+                <li>Confirm taxes and insurance before closing.</li>
+                <li>Include all lender and refinance fees.</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+        <div class="legal-footer">AUTHORIZED ROADMAP STUDENT USE ONLY • DO NOT SHARE • EDUCATIONAL ESTIMATES ONLY</div>
+      </section>
+
+      <!-- FINANCED FLIP -->
+      <section class="view calculator-view" id="financed-flipView" hidden>
+        <div class="calc-header">
+          <div>
+            <h1>Financed Flip Calculator</h1>
+            <p>Hard Money Purchase • Rehab • Sell • Net Profit</p>
+          </div>
+          <div class="calc-header-actions">
+            <a class="app-button" href="#home">Back</a>
+            <button class="app-button" type="button" data-action="sample" data-calc="financed">Sample</button>
+            <button class="app-button" type="button" data-action="clear" data-calc="financed">Clear</button>
+            <button class="app-button primary" type="button" data-action="save" data-calc="financed">Save</button>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card primary"><span class="summary-label">Net Profit</span><strong class="summary-value" id="f_summaryProfit">$0.00</strong></div>
+          <div class="summary-card"><span class="summary-label">Cash to Close</span><strong class="summary-value" id="f_summaryCashClose">$0.00</strong></div>
+          <div class="summary-card"><span class="summary-label">Total Investment</span><strong class="summary-value" id="f_summaryTotal">$0.00</strong></div>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-main">
+            <details class="calc-section" open>
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">1</span><div><h2>Buy</h2><p>Purchase, financing, rehab, and acquisition costs.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field"><label for="f_arv">ARV</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_arv" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="f_purchase">Purchase Price</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_purchase" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="f_rehab">Rehab</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_rehab" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="f_hmlPct">Hard Money Loan % of ARV</label><div class="input-wrap"><input class="with-suffix" id="f_hmlPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="f_lenderFee">Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_lenderFee" type="number" min="0" step="1"></div></div>
+                  <div class="field"><label for="f_closingPct">Buyer Closing Cost %</label><div class="input-wrap"><input class="with-suffix" id="f_closingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="f_titlePct">Buyer Title Policy %</label><div class="input-wrap"><input class="with-suffix" id="f_titlePct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="f_survey">Survey & Appraisal</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_survey" type="number" min="0" step="1"></div></div>
+                  <div class="field full"><label for="f_additional">Additional Cost — Insurance & Taxes</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_additional" type="number" min="0" step="1"></div></div>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-item"><label>Hard Money Loan</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_hml">$0.00</div></div></div>
+                  <div class="result-item"><label>Closing Cost and Lender Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_closeFees">$0.00</div></div></div>
+                  <div class="result-item"><label>LH — Out of Pocket</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_outPocket">$0.00</div></div></div>
+                  <div class="result-item"><label>Total Cash to Close</label><div class="output-wrap"><span class="prefix">$</span><div class="output money orange" id="f_cashClose">$0.00</div></div></div>
+                  <div class="result-item"><label>Buy-Side Total Investment</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_buyInvestment">$0.00</div></div></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="calc-section">
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">2</span><div><h2>Sell</h2><p>Realtor, seller title, and holding costs.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field"><label for="f_realtorPct">Realtor Fees % of ARV</label><div class="input-wrap"><input class="with-suffix" id="f_realtorPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="f_sellTitlePct">Seller Title Policy % of ARV</label><div class="input-wrap"><input class="with-suffix" id="f_sellTitlePct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field full"><label for="f_holdingPct">Holding Fees % of Purchase + Rehab</label><div class="input-wrap"><input class="with-suffix" id="f_holdingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-item"><label>Realtor Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_realtorFees">$0.00</div></div></div>
+                  <div class="result-item"><label>Seller Title Policy</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_sellTitle">$0.00</div></div></div>
+                  <div class="result-item"><label>Holding Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_holding">$0.00</div></div></div>
+                  <div class="result-item"><label>Closing Cost Total</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_sellCosts">$0.00</div></div></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="calc-section">
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">3</span><div><h2>Net Profit</h2><p>Compare total investment against projected ARV.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="result-grid">
+                  <div class="result-item"><label>ARV / Projected Sale Price</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_saleValue">$0.00</div></div></div>
+                  <div class="result-item"><label>Total Investment</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_totalInvestment">$0.00</div></div></div>
+                  <div class="result-item"><label>Net Profit</label><div class="output-wrap"><span class="prefix">$</span><div class="output money green" id="f_profit">$0.00</div></div></div>
+                </div>
+                <div class="status orange" id="f_status">Review the projected profit.</div>
+              </div>
+            </details>
+
+            <div class="action-grid">
+              <button class="app-button" type="button" data-action="copy" data-calc="financed">Copy Summary</button>
+              <button class="app-button" type="button" data-action="print" data-calc="financed">Print / Save PDF</button>
+            </div>
+          </div>
+
+          <aside class="calc-side">
+            <div class="side-card"><h3>Profit Rating</h3><p><strong>Green:</strong> $20,000+ net profit</p><p><strong>Orange:</strong> $0–$19,999</p><p><strong>Red:</strong> Negative profit</p></div>
+            <div class="side-card"><h3>Formula Note</h3><p>Holding fees use the same sample basis: purchase price plus rehab budget.</p></div>
+          </aside>
+        </div>
+        <div class="legal-footer">AUTHORIZED ROADMAP STUDENT USE ONLY • DO NOT SHARE • EDUCATIONAL ESTIMATES ONLY</div>
+      </section>
+
+      <!-- CASH BUY -->
+      <section class="view calculator-view" id="cash-buyView" hidden>
+        <div class="calc-header">
+          <div>
+            <h1>Cash Buy Flip Calculator</h1>
+            <p>Cash Purchase • Rehab • Sell • Net Profit</p>
+          </div>
+          <div class="calc-header-actions">
+            <a class="app-button" href="#home">Back</a>
+            <button class="app-button" type="button" data-action="sample" data-calc="cash">Sample</button>
+            <button class="app-button" type="button" data-action="clear" data-calc="cash">Clear</button>
+            <button class="app-button primary" type="button" data-action="save" data-calc="cash">Save</button>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card primary"><span class="summary-label">Net Profit</span><strong class="summary-value" id="c_summaryProfit">$0.00</strong></div>
+          <div class="summary-card"><span class="summary-label">Purchase-Side Investment</span><strong class="summary-value" id="c_summaryBuy">$0.00</strong></div>
+          <div class="summary-card"><span class="summary-label">Total Investment</span><strong class="summary-value" id="c_summaryTotal">$0.00</strong></div>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-main">
+            <details class="calc-section" open>
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">1</span><div><h2>Cash Buy</h2><p>Purchase, rehab, title, survey, and optional costs.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field"><label for="c_arv">ARV</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_arv" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="c_purchase">Purchase Price</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_purchase" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="c_rehab">Rehab</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_rehab" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="c_lenderFee">Optional Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_lenderFee" type="number" min="0" step="1"></div></div>
+                  <div class="field"><label for="c_closingPct">Optional Buyer Closing Cost %</label><div class="input-wrap"><input class="with-suffix" id="c_closingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="c_titlePct">Buyer Title Policy %</label><div class="input-wrap"><input class="with-suffix" id="c_titlePct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="c_survey">Survey & Appraisal</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_survey" type="number" min="0" step="1"></div></div>
+                  <div class="field"><label for="c_additional">Additional Cost — Insurance & Taxes</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_additional" type="number" min="0" step="1"></div></div>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-item"><label>Closing Cost and Lender Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_closeFees">$0.00</div></div></div>
+                  <div class="result-item"><label>Cash Required to Purchase</label><div class="output-wrap"><span class="prefix">$</span><div class="output money orange" id="c_cashClose">$0.00</div></div></div>
+                  <div class="result-item"><label>Purchase-Side Total Investment</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_buyInvestment">$0.00</div></div></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="calc-section">
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">2</span><div><h2>Sell</h2><p>Realtor, seller title, and optional holding costs.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field"><label for="c_realtorPct">Realtor Fees % of ARV</label><div class="input-wrap"><input class="with-suffix" id="c_realtorPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field"><label for="c_sellTitlePct">Seller Title Policy % of ARV</label><div class="input-wrap"><input class="with-suffix" id="c_sellTitlePct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field full"><label for="c_holdingPct">Optional Holding Fees % of Purchase + Rehab</label><div class="input-wrap"><input class="with-suffix" id="c_holdingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-item"><label>Realtor Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_realtorFees">$0.00</div></div></div>
+                  <div class="result-item"><label>Seller Title Policy</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_sellTitle">$0.00</div></div></div>
+                  <div class="result-item"><label>Holding Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_holding">$0.00</div></div></div>
+                  <div class="result-item"><label>Closing Cost Total</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_sellCosts">$0.00</div></div></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="calc-section">
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">3</span><div><h2>Net Profit</h2><p>Compare total investment against projected ARV.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="result-grid">
+                  <div class="result-item"><label>ARV / Projected Sale Price</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_saleValue">$0.00</div></div></div>
+                  <div class="result-item"><label>Total Investment</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_totalInvestment">$0.00</div></div></div>
+                  <div class="result-item"><label>Net Profit</label><div class="output-wrap"><span class="prefix">$</span><div class="output money green" id="c_profit">$0.00</div></div></div>
+                </div>
+                <div class="status orange" id="c_status">Review the projected profit.</div>
+              </div>
+            </details>
+
+            <div class="action-grid">
+              <button class="app-button" type="button" data-action="copy" data-calc="cash">Copy Summary</button>
+              <button class="app-button" type="button" data-action="print" data-calc="cash">Print / Save PDF</button>
+            </div>
+          </div>
+
+          <aside class="calc-side">
+            <div class="side-card"><h3>Sample Assumption</h3><p>Buyer closing costs and holding fees default to $0 to match the cash-buy sample. Enter a percentage when those costs apply.</p></div>
+            <div class="side-card"><h3>Profit Rating</h3><p><strong>Green:</strong> $20,000+ net profit</p><p><strong>Orange:</strong> $0–$19,999</p><p><strong>Red:</strong> Negative profit</p></div>
+          </aside>
+        </div>
+        <div class="legal-footer">AUTHORIZED ROADMAP STUDENT USE ONLY • DO NOT SHARE • EDUCATIONAL ESTIMATES ONLY</div>
+      </section>
+
+      <!-- WHOLESALE -->
+      <section class="view calculator-view" id="wholesaleView" hidden>
+        <div class="calc-header">
+          <div>
+            <h1>Wholesale Master Deal Analyzer</h1>
+            <p>65% Rule • 70% Rule • 75% Rule</p>
+          </div>
+          <div class="calc-header-actions">
+            <a class="app-button" href="#home">Back</a>
+            <button class="app-button" type="button" data-action="sample" data-calc="wholesale">Sample</button>
+            <button class="app-button" type="button" data-action="clear" data-calc="wholesale">Clear</button>
+            <button class="app-button primary" type="button" data-action="save" data-calc="wholesale">Save</button>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card primary"><span class="summary-label">Best Wholesale Rule</span><strong class="summary-value" id="w_summaryRule">—</strong></div>
+          <div class="summary-card"><span class="summary-label">Best Maximum Offer</span><strong class="summary-value" id="w_summaryOffer">$0.00</strong></div>
+          <div class="summary-card"><span class="summary-label">Available Assignment Margin</span><strong class="summary-value" id="w_summaryAssignment">$0.00</strong></div>
+        </div>
+
+        <div class="calc-layout">
+          <div class="calc-main">
+            <details class="calc-section" open>
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">1</span><div><h2>Deal Inputs</h2><p>Enter the property and assignment goal.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="field-grid">
+                  <div class="field"><label for="w_arv">ARV</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="w_arv" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="w_rehab">Rehab Budget</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="w_rehab" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="w_asking">Seller Asking Price</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="w_asking" type="number" min="0" step="100"></div></div>
+                  <div class="field"><label for="w_goal">Assignment Fee Goal</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="w_goal" type="number" min="0" step="100"></div></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="calc-section" open>
+              <summary class="section-summary">
+                <div class="section-summary-left"><span class="section-number">2</span><div><h2>Rule Analysis</h2><p>Compare the asking price with each maximum offer.</p></div></div>
+                <span class="caret">⌄</span>
+              </summary>
+              <div class="section-body">
+                <div class="rule-table">
+                  <div class="rule-card">
+                    <h3>65% of ARV Rule</h3>
+                    <div class="rule-rows">
+                      <div class="rule-row"><span>65% of ARV</span><strong id="w_value65">$0.00</strong></div>
+                      <div class="rule-row"><span>Maximum Offer</span><strong id="w_offer65">$0.00</strong></div>
+                      <div class="rule-row"><span>Deal at 65%?</span><strong id="w_deal65">—</strong></div>
+                      <div class="rule-row"><span>Available Assignment Margin</span><strong id="w_assignment65">$0.00</strong></div>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <h3>70% of ARV Rule</h3>
+                    <div class="rule-rows">
+                      <div class="rule-row"><span>70% of ARV</span><strong id="w_value70">$0.00</strong></div>
+                      <div class="rule-row"><span>Maximum Offer</span><strong id="w_offer70">$0.00</strong></div>
+                      <div class="rule-row"><span>Deal at 70%?</span><strong id="w_deal70">—</strong></div>
+                      <div class="rule-row"><span>Available Assignment Margin</span><strong id="w_assignment70">$0.00</strong></div>
+                    </div>
+                  </div>
+
+                  <div class="rule-card">
+                    <h3>75% of ARV Rule</h3>
+                    <div class="rule-rows">
+                      <div class="rule-row"><span>75% of ARV</span><strong id="w_value75">$0.00</strong></div>
+                      <div class="rule-row"><span>Maximum Offer</span><strong id="w_offer75">$0.00</strong></div>
+                      <div class="rule-row"><span>Deal at 75%?</span><strong id="w_deal75">—</strong></div>
+                      <div class="rule-row"><span>Available Assignment Margin</span><strong id="w_assignment75">$0.00</strong></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="status orange" id="w_status">Enter the deal numbers.</div>
+              </div>
+            </details>
+
+            <div class="action-grid">
+              <button class="app-button" type="button" data-action="copy" data-calc="wholesale">Copy Summary</button>
+              <button class="app-button" type="button" data-action="print" data-calc="wholesale">Print / Save PDF</button>
+            </div>
+          </div>
+
+          <aside class="calc-side">
+            <div class="side-card"><h3>Maximum Offer Formula</h3><p>ARV × Rule Percentage − Rehab Budget − Assignment Fee Goal.</p></div>
+            <div class="side-card"><h3>Best Rule</h3><p>The app selects the most conservative rule that still supports the seller’s asking price.</p></div>
+          </aside>
+        </div>
+        <div class="legal-footer">AUTHORIZED ROADMAP STUDENT USE ONLY • DO NOT SHARE • EDUCATIONAL ESTIMATES ONLY</div>
+      </section>
+    </main>
   </div>
-</div>
 
-<script src="./common.js"></script>
+  <div class="install-modal" id="installModal" hidden>
+    <div class="modal-card">
+      <h2>Install This Free App</h2>
+      <div id="installInstructions">
+        <p>Install the calculator toolkit on your phone for faster access.</p>
+      </div>
+      <div class="modal-actions">
+        <button class="app-button outline" id="closeInstallModal" type="button">Close</button>
+        <button class="app-button primary" id="confirmInstallButton" type="button">Install</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script>
+    (function(){
+      "use strict";
+
+      const config = window.DEBA_APP_CONFIG;
+      const accessGate = document.getElementById("accessGate");
+      const appShell = document.getElementById("appShell");
+      const toast = document.getElementById("toast");
+      const views = Array.from(document.querySelectorAll(".view"));
+      const installModal = document.getElementById("installModal");
+      const confirmInstallButton = document.getElementById("confirmInstallButton");
+      const installInstructions = document.getElementById("installInstructions");
+      let deferredInstallPrompt = null;
+
+      const defaults = {
+        brrrr:{
+          b_arv:305000,b_purchase:145000,b_rehab:50000,b_hmlPct:75,b_lenderFee:5060.50,
+          b_closingPct:2.5,b_survey:1000,b_additional:2000,b_refiCost:6600,b_holdingPct:4,
+          b_ltv1:75,b_ltv2:80,b_rent:2500,b_rate:7,b_term:30,b_taxes:100,b_insurance:150,b_hoa:0
+        },
+        financed:{
+          f_arv:305000,f_purchase:150000,f_rehab:80000,f_hmlPct:75,f_lenderFee:5235,
+          f_closingPct:2.5,f_titlePct:1,f_survey:1000,f_additional:2000,
+          f_realtorPct:6,f_sellTitlePct:1,f_holdingPct:5
+        },
+        cash:{
+          c_arv:285000,c_purchase:205000,c_rehab:30000,c_lenderFee:0,c_closingPct:0,
+          c_titlePct:1,c_survey:1000,c_additional:2000,c_realtorPct:6,c_sellTitlePct:1,c_holdingPct:0
+        },
+        wholesale:{
+          w_arv:380000,w_rehab:70000,w_asking:195000,w_goal:10000
+        }
+      };
+
+      const calcIds = {
+        brrrr:Object.keys(defaults.brrrr),
+        financed:Object.keys(defaults.financed),
+        cash:Object.keys(defaults.cash),
+        wholesale:Object.keys(defaults.wholesale)
+      };
+
+      const currency = new Intl.NumberFormat("en-US",{
+        style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2
+      });
+
+      function money(value){
+        const n = Number.isFinite(value) ? value : 0;
+        const formatted = currency.format(Math.abs(n));
+        return n < 0 ? "-" + formatted : formatted;
+      }
+
+      function number(id){
+        const element = document.getElementById(id);
+        const value = element ? parseFloat(element.value) : 0;
+        return Number.isFinite(value) ? value : 0;
+      }
+
+      function setText(id,value){
+        const element = document.getElementById(id);
+        if(element) element.textContent = value;
+      }
+
+      function setOutputTone(id,value,goodThreshold=0){
+        const el = document.getElementById(id);
+        if(!el) return;
+        el.classList.remove("green","orange","red");
+        if(value >= goodThreshold) el.classList.add("green");
+        else if(value >= 0) el.classList.add("orange");
+        else el.classList.add("red");
+      }
+
+      function payment(principal,annualRate,years){
+        if(principal <= 0 || years <= 0) return 0;
+        const months = years * 12;
+        const r = annualRate / 100 / 12;
+        if(r === 0) return principal / months;
+        const factor = Math.pow(1+r,months);
+        return principal * ((r*factor)/(factor-1));
+      }
+
+      function showToast(message){
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(()=>toast.classList.remove("show"),2200);
+      }
+
+      async function hashText(value){
+        const bytes = new TextEncoder().encode(value);
+        const digest = await crypto.subtle.digest("SHA-256",bytes);
+        return Array.from(new Uint8Array(digest))
+          .map(byte=>byte.toString(16).padStart(2,"0"))
+          .join("");
+      }
+
+      function accessKey(){return "debaStudentAccessV1"}
+
+      function hasValidAccess(){
+        try{
+          const saved = JSON.parse(localStorage.getItem(accessKey()) || "null");
+          if(!saved || !saved.expires || !saved.name) return false;
+          if(Date.now() > saved.expires){
+            localStorage.removeItem(accessKey());
+            return false;
+          }
+          return true;
+        }catch(error){
+          return false;
+        }
+      }
+
+      function getStudent(){
+        try{
+          return JSON.parse(localStorage.getItem(accessKey()) || "null");
+        }catch(error){
+          return null;
+        }
+      }
+
+      function unlockApp(){
+        const student = getStudent();
+        accessGate.hidden = true;
+        appShell.hidden = false;
+        document.getElementById("authorizedStudent").textContent =
+          student ? "Authorized to: " + student.name : "";
+        route();
+      }
+
+      document.getElementById("accessButton").addEventListener("click",async()=>{
+        const name = document.getElementById("studentName").value.trim();
+        const code = document.getElementById("studentCode").value.trim();
+        const agreed = document.getElementById("legalAgreement").checked;
+        const error = document.getElementById("gateError");
+
+        if(!name){
+          error.textContent = "Enter the authorized student's full name.";
+          return;
+        }
+
+        if(!agreed){
+          error.textContent = "You must agree to the student-use terms.";
+          return;
+        }
+
+        if(!code){
+          error.textContent = "Enter the student access code.";
+          return;
+        }
+
+        const codeHash = await hashText(code);
+        if(codeHash !== config.accessCodeHash){
+          error.textContent = "The access code is incorrect.";
+          return;
+        }
+
+        const expires =
+          Date.now() + config.accessDurationDays * 24 * 60 * 60 * 1000;
+
+        localStorage.setItem(accessKey(),JSON.stringify({name,expires}));
+        error.textContent = "";
+        unlockApp();
+        showToast("Student access confirmed.");
+      });
+
+      document.getElementById("logoutButton").addEventListener("click",()=>{
+        localStorage.removeItem(accessKey());
+        appShell.hidden = true;
+        accessGate.hidden = false;
+        document.getElementById("studentCode").value = "";
+        document.getElementById("legalAgreement").checked = false;
+        showToast("App locked.");
+      });
+
+      function route(){
+        if(appShell.hidden) return;
+        const routeName = (location.hash || "#home").slice(1);
+        const valid = ["home","brrrr","financed-flip","cash-buy","wholesale"];
+        const target = valid.includes(routeName) ? routeName : "home";
+
+        views.forEach(view=>view.hidden = true);
+        const view = document.getElementById(target + "View");
+        if(view) view.hidden = false;
+        window.scrollTo({top:0,behavior:"smooth"});
+      }
+
+      window.addEventListener("hashchange",route);
+
+      function populate(calc,values){
+        calcIds[calc].forEach(id=>{
+          const el = document.getElementById(id);
+          if(el && Object.prototype.hasOwnProperty.call(values,id)){
+            el.value = values[id];
+          }
+        });
+        calculate(calc);
+      }
+
+      function currentValues(calc){
+        const result = {};
+        calcIds[calc].forEach(id=>{
+          result[id] = number(id);
+        });
+        return result;
+      }
+
+      function clearCalc(calc){
+        const empty = {};
+        calcIds[calc].forEach(id=>empty[id]=0);
+        if(calc==="brrrr") empty.b_term=30;
+        populate(calc,empty);
+        showToast("Calculator cleared.");
+      }
+
+      function saveCalc(calc){
+        localStorage.setItem("debaCalc_" + calc,JSON.stringify(currentValues(calc)));
+        showToast("Calculator saved on this device.");
+      }
+
+      function loadCalc(calc){
+        try{
+          const saved = localStorage.getItem("debaCalc_" + calc);
+          if(!saved) return false;
+          populate(calc,JSON.parse(saved));
+          return true;
+        }catch(error){
+          return false;
+        }
+      }
+
+      function calculateBrrrr(){
+        const arv=number("b_arv"),purchase=number("b_purchase"),rehab=number("b_rehab");
+        const hmlPct=number("b_hmlPct"),lender=number("b_lenderFee"),closingPct=number("b_closingPct");
+        const survey=number("b_survey"),additional=number("b_additional");
+        const refiCost=number("b_refiCost"),holdingPct=number("b_holdingPct");
+        const ltv1=number("b_ltv1"),ltv2=number("b_ltv2");
+        const rent=number("b_rent"),rate=number("b_rate"),term=number("b_term");
+        const taxes=number("b_taxes"),insurance=number("b_insurance"),hoa=number("b_hoa");
+
+        const closing=purchase*(closingPct/100);
+        const fees=lender+closing+survey+additional;
+        const totalInvestment=purchase+rehab+fees;
+        const hml=arv*(hmlPct/100);
+        const gap=Math.max(0,purchase+rehab-hml);
+        const cashClose=fees+gap;
+        const holding=totalInvestment*(holdingPct/100);
+        const projectBasis=totalInvestment+refiCost+holding;
+        const loan1=arv*(ltv1/100),loan2=arv*(ltv2/100);
+        const cashBack1=loan1-projectBasis,cashBack2=loan2-projectBasis;
+        const equity1=arv-loan1,equity2=arv-loan2;
+        const pi=payment(loan1,rate,term);
+        const expenses=pi+taxes+insurance+hoa;
+        const cashFlow=rent-expenses;
+        const noi=cashFlow*12;
+        const roi=cashClose>0?(noi/cashClose)*100:0;
+
+        setText("b_hml",money(hml)); setText("b_totalInvestment",money(totalInvestment));
+        setText("b_gap",money(gap)); setText("b_cashClose",money(cashClose));
+        setText("b_holding",money(holding)); setText("b_loan1",money(loan1));
+        setText("b_cashBack1",money(cashBack1)); setText("b_equity1",money(equity1));
+        setText("b_loan2",money(loan2)); setText("b_cashBack2",money(cashBack2));
+        setText("b_equity2",money(equity2)); setText("b_pi",money(pi));
+        setText("b_expenses",money(expenses)); setText("b_cashFlow",money(cashFlow));
+        setText("b_noi",money(noi)); setText("b_roi",roi.toFixed(2)+"%");
+        setText("b_summaryCashFlow",money(cashFlow)); setText("b_summaryCashClose",money(cashClose));
+        setText("b_summaryRoi",roi.toFixed(2)+"%");
+
+        const status=document.getElementById("b_status");
+        status.className="status";
+        if(cashFlow>=300){status.classList.add("green");status.textContent="Good Deal — Strong positive monthly cash flow.";}
+        else if(cashFlow>=0){status.classList.add("orange");status.textContent="Review Deal — Positive but limited monthly cash flow.";}
+        else{status.classList.add("red");status.textContent="No Deal — Negative monthly cash flow.";}
+
+        return {arv,purchase,rehab,totalInvestment,hml,gap,cashClose,holding,loan1,cashBack1,equity1,loan2,cashBack2,equity2,rent,pi,expenses,cashFlow,noi,roi};
+      }
+
+      function calculateFinanced(){
+        const arv=number("f_arv"),purchase=number("f_purchase"),rehab=number("f_rehab");
+        const hmlPct=number("f_hmlPct"),lenderFee=number("f_lenderFee");
+        const closingPct=number("f_closingPct"),titlePct=number("f_titlePct");
+        const survey=number("f_survey"),additional=number("f_additional");
+        const realtorPct=number("f_realtorPct"),sellTitlePct=number("f_sellTitlePct"),holdingPct=number("f_holdingPct");
+
+        const closing=purchase*(closingPct/100);
+        const buyerTitle=purchase*(titlePct/100);
+        const closeFees=lenderFee+closing+buyerTitle+survey+additional;
+        const buyInvestment=purchase+rehab+closeFees;
+        const hml=arv*(hmlPct/100);
+        const outPocket=Math.max(0,purchase+rehab-hml);
+        const cashClose=closeFees+outPocket;
+        const realtorFees=arv*(realtorPct/100);
+        const sellTitle=arv*(sellTitlePct/100);
+        const holding=(purchase+rehab)*(holdingPct/100);
+        const sellCosts=realtorFees+sellTitle+holding;
+        const totalInvestment=buyInvestment+sellCosts;
+        const profit=arv-totalInvestment;
+
+        setText("f_hml",money(hml)); setText("f_closeFees",money(closeFees));
+        setText("f_outPocket",money(outPocket)); setText("f_cashClose",money(cashClose));
+        setText("f_buyInvestment",money(buyInvestment)); setText("f_realtorFees",money(realtorFees));
+        setText("f_sellTitle",money(sellTitle)); setText("f_holding",money(holding));
+        setText("f_sellCosts",money(sellCosts)); setText("f_saleValue",money(arv));
+        setText("f_totalInvestment",money(totalInvestment)); setText("f_profit",money(profit));
+        setText("f_summaryProfit",money(profit)); setText("f_summaryCashClose",money(cashClose));
+        setText("f_summaryTotal",money(totalInvestment));
+        setOutputTone("f_profit",profit,20000);
+
+        const status=document.getElementById("f_status");
+        status.className="status";
+        if(profit>=20000){status.classList.add("green");status.textContent="Good Deal — Projected net profit is $20,000 or more.";}
+        else if(profit>=0){status.classList.add("orange");status.textContent="Review Deal — Projected profit is positive but below $20,000.";}
+        else{status.classList.add("red");status.textContent="No Deal — Projected net profit is negative.";}
+
+        return {arv,purchase,rehab,hml,closeFees,outPocket,cashClose,buyInvestment,realtorFees,sellTitle,holding,sellCosts,totalInvestment,profit};
+      }
+
+      function calculateCash(){
+        const arv=number("c_arv"),purchase=number("c_purchase"),rehab=number("c_rehab");
+        const lenderFee=number("c_lenderFee"),closingPct=number("c_closingPct"),titlePct=number("c_titlePct");
+        const survey=number("c_survey"),additional=number("c_additional");
+        const realtorPct=number("c_realtorPct"),sellTitlePct=number("c_sellTitlePct"),holdingPct=number("c_holdingPct");
+
+        const closing=purchase*(closingPct/100);
+        const buyerTitle=purchase*(titlePct/100);
+        const closeFees=lenderFee+closing+buyerTitle+survey+additional;
+        const buyInvestment=purchase+rehab+closeFees;
+        const cashClose=buyInvestment;
+        const realtorFees=arv*(realtorPct/100);
+        const sellTitle=arv*(sellTitlePct/100);
+        const holding=(purchase+rehab)*(holdingPct/100);
+        const sellCosts=realtorFees+sellTitle+holding;
+        const totalInvestment=buyInvestment+sellCosts;
+        const profit=arv-totalInvestment;
+
+        setText("c_closeFees",money(closeFees)); setText("c_cashClose",money(cashClose));
+        setText("c_buyInvestment",money(buyInvestment)); setText("c_realtorFees",money(realtorFees));
+        setText("c_sellTitle",money(sellTitle)); setText("c_holding",money(holding));
+        setText("c_sellCosts",money(sellCosts)); setText("c_saleValue",money(arv));
+        setText("c_totalInvestment",money(totalInvestment)); setText("c_profit",money(profit));
+        setText("c_summaryProfit",money(profit)); setText("c_summaryBuy",money(buyInvestment));
+        setText("c_summaryTotal",money(totalInvestment));
+        setOutputTone("c_profit",profit,20000);
+
+        const status=document.getElementById("c_status");
+        status.className="status";
+        if(profit>=20000){status.classList.add("green");status.textContent="Good Deal — Projected net profit is $20,000 or more.";}
+        else if(profit>=0){status.classList.add("orange");status.textContent="Review Deal — Projected profit is positive but below $20,000.";}
+        else{status.classList.add("red");status.textContent="No Deal — Projected net profit is negative.";}
+
+        return {arv,purchase,rehab,closeFees,cashClose,buyInvestment,realtorFees,sellTitle,holding,sellCosts,totalInvestment,profit};
+      }
+
+      function calculateWholesale(){
+        const arv=number("w_arv"),rehab=number("w_rehab"),asking=number("w_asking"),goal=number("w_goal");
+        const rules=[65,70,75];
+        const results=rules.map(rule=>{
+          const value=arv*(rule/100);
+          const offer=value-rehab-goal;
+          const assignment=Math.max(0,offer-asking);
+          const deal=asking<=offer;
+          setText("w_value"+rule,money(value));
+          setText("w_offer"+rule,money(offer));
+          setText("w_deal"+rule,deal?"YES — Deal at "+rule+"%":"NO — Not a deal at "+rule+"%");
+          setText("w_assignment"+rule,money(assignment));
+          const dealEl=document.getElementById("w_deal"+rule);
+          dealEl.style.color=deal?"#16723b":"#b82c22";
+          return {rule,value,offer,assignment,deal};
+        });
+
+        const best=results.find(item=>item.deal) || null;
+        setText("w_summaryRule",best?best.rule+"% Rule":"No Deal");
+        setText("w_summaryOffer",money(best?best.offer:0));
+        setText("w_summaryAssignment",money(best?best.assignment:0));
+
+        const status=document.getElementById("w_status");
+        status.className="status";
+        if(best){
+          status.classList.add("green");
+          status.textContent="Deal Found — The most conservative viable rule is "+best.rule+"%.";
+        }else{
+          status.classList.add("red");
+          status.textContent="No Deal — The seller asking price exceeds all tested maximum offers.";
+        }
+
+        return {arv,rehab,asking,goal,results,best};
+      }
+
+      function calculate(calc){
+        if(calc==="brrrr") return calculateBrrrr();
+        if(calc==="financed") return calculateFinanced();
+        if(calc==="cash") return calculateCash();
+        if(calc==="wholesale") return calculateWholesale();
+      }
+
+      function summaryText(calc){
+        const student=getStudent();
+        const authorized=student?student.name:"Authorized Student";
+
+        if(calc==="brrrr"){
+          const d=calculateBrrrr();
+          return [
+            "DEBA DOUGLAS PRINCIPLES OF REAL ESTATE",
+            "AUTHORIZED STUDENT: "+authorized,
+            "BRRRR INVESTMENT CALCULATOR",
+            "--------------------------------",
+            "ARV: "+money(d.arv),
+            "Purchase Price: "+money(d.purchase),
+            "Rehab: "+money(d.rehab),
+            "Total Investment: "+money(d.totalInvestment),
+            "Cash to Close: "+money(d.cashClose),
+            "Scenario 1 Loan: "+money(d.loan1),
+            "Scenario 1 Cash in Deal / Cash Back: "+money(d.cashBack1),
+            "Scenario 1 Equity: "+money(d.equity1),
+            "Scenario 2 Loan: "+money(d.loan2),
+            "Scenario 2 Cash in Deal / Cash Back: "+money(d.cashBack2),
+            "Scenario 2 Equity: "+money(d.equity2),
+            "Market Rent: "+money(d.rent),
+            "Monthly Expenses: "+money(d.expenses),
+            "Monthly Cash Flow: "+money(d.cashFlow),
+            "Annual NOI: "+money(d.noi),
+            "Cash-on-Cash ROI: "+d.roi.toFixed(2)+"%",
+            "",
+            "PRIVATE STUDENT USE ONLY — DO NOT SHARE."
+          ].join("\n");
+        }
+
+        if(calc==="financed"){
+          const d=calculateFinanced();
+          return [
+            "DEBA DOUGLAS PRINCIPLES OF REAL ESTATE",
+            "AUTHORIZED STUDENT: "+authorized,
+            "FINANCED FLIP CALCULATOR",
+            "--------------------------------",
+            "ARV: "+money(d.arv),
+            "Purchase Price: "+money(d.purchase),
+            "Rehab: "+money(d.rehab),
+            "Hard Money Loan: "+money(d.hml),
+            "Closing Cost and Lender Fees: "+money(d.closeFees),
+            "Out of Pocket: "+money(d.outPocket),
+            "Cash to Close: "+money(d.cashClose),
+            "Buy-Side Total Investment: "+money(d.buyInvestment),
+            "Realtor Fees: "+money(d.realtorFees),
+            "Seller Title Policy: "+money(d.sellTitle),
+            "Holding Fees: "+money(d.holding),
+            "Selling Costs: "+money(d.sellCosts),
+            "Total Investment: "+money(d.totalInvestment),
+            "Net Profit: "+money(d.profit),
+            "",
+            "PRIVATE STUDENT USE ONLY — DO NOT SHARE."
+          ].join("\n");
+        }
+
+        if(calc==="cash"){
+          const d=calculateCash();
+          return [
+            "DEBA DOUGLAS PRINCIPLES OF REAL ESTATE",
+            "AUTHORIZED STUDENT: "+authorized,
+            "CASH BUY FLIP CALCULATOR",
+            "--------------------------------",
+            "ARV: "+money(d.arv),
+            "Purchase Price: "+money(d.purchase),
+            "Rehab: "+money(d.rehab),
+            "Closing Cost and Lender Fees: "+money(d.closeFees),
+            "Cash Required to Purchase: "+money(d.cashClose),
+            "Purchase-Side Total Investment: "+money(d.buyInvestment),
+            "Realtor Fees: "+money(d.realtorFees),
+            "Seller Title Policy: "+money(d.sellTitle),
+            "Holding Fees: "+money(d.holding),
+            "Selling Costs: "+money(d.sellCosts),
+            "Total Investment: "+money(d.totalInvestment),
+            "Net Profit: "+money(d.profit),
+            "",
+            "PRIVATE STUDENT USE ONLY — DO NOT SHARE."
+          ].join("\n");
+        }
+
+        const d=calculateWholesale();
+        const rows=d.results.map(item=>
+          item.rule+"% Rule — Max Offer: "+money(item.offer)+
+          " | Deal: "+(item.deal?"YES":"NO")+
+          " | Available Assignment Margin: "+money(item.assignment)
+        );
+        return [
+          "DEBA DOUGLAS PRINCIPLES OF REAL ESTATE",
+          "AUTHORIZED STUDENT: "+authorized,
+          "WHOLESALE MASTER DEAL ANALYZER",
+          "--------------------------------",
+          "ARV: "+money(d.arv),
+          "Rehab Budget: "+money(d.rehab),
+          "Seller Asking Price: "+money(d.asking),
+          "Assignment Fee Goal: "+money(d.goal),
+          ...rows,
+          "Best Wholesale Rule: "+(d.best?d.best.rule+"% Rule":"No Deal"),
+          "",
+          "PRIVATE STUDENT USE ONLY — DO NOT SHARE."
+        ].join("\n");
+      }
+
+      async function copyText(text){
+        try{
+          await navigator.clipboard.writeText(text);
+        }catch(error){
+          const area=document.createElement("textarea");
+          area.value=text;
+          area.style.position="fixed";
+          area.style.opacity="0";
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand("copy");
+          area.remove();
+        }
+      }
+
+      document.querySelectorAll("input[id^='b_']").forEach(el=>el.addEventListener("input",()=>calculate("brrrr")));
+      document.querySelectorAll("input[id^='f_']").forEach(el=>el.addEventListener("input",()=>calculate("financed")));
+      document.querySelectorAll("input[id^='c_']").forEach(el=>el.addEventListener("input",()=>calculate("cash")));
+      document.querySelectorAll("input[id^='w_']").forEach(el=>el.addEventListener("input",()=>calculate("wholesale")));
+
+      document.addEventListener("click",async event=>{
+        const button=event.target.closest("[data-action]");
+        if(!button) return;
+        const action=button.dataset.action;
+        const calc=button.dataset.calc;
+
+        if(action==="sample"){populate(calc,defaults[calc]);showToast("Sample deal loaded.");}
+        if(action==="clear"){clearCalc(calc);}
+        if(action==="save"){saveCalc(calc);}
+        if(action==="copy"){await copyText(summaryText(calc));showToast("Calculator summary copied.");}
+        if(action==="print"){
+          document.querySelectorAll("#"+(calc==="financed"?"financed-flip":calc==="cash"?"cash-buy":calc)+"View details").forEach(d=>d.open=true);
+          window.print();
+        }
+      });
+
+      function initCalculators(){
+        Object.keys(defaults).forEach(calc=>{
+          if(!loadCalc(calc)) populate(calc,defaults[calc]);
+        });
+      }
+
+      window.addEventListener("beforeinstallprompt",event=>{
+        event.preventDefault();
+        deferredInstallPrompt=event;
+      });
+
+      function isIos(){
+        return /iphone|ipad|ipod/i.test(navigator.userAgent);
+      }
+
+      function isStandalone(){
+        return window.matchMedia("(display-mode: standalone)").matches ||
+          window.navigator.standalone === true;
+      }
+
+      document.getElementById("installButton").addEventListener("click",()=>{
+        if(isStandalone()){
+          showToast("The app is already installed.");
+          return;
+        }
+
+        installModal.hidden=false;
+
+        if(deferredInstallPrompt){
+          installInstructions.innerHTML="<p>Tap Install to add the calculator app to your device.</p>";
+          confirmInstallButton.hidden=false;
+        }else if(isIos()){
+          installInstructions.innerHTML=
+            "<p>On iPhone or iPad:</p><ol><li>Open this page in Safari.</li><li>Tap the Share button.</li><li>Select <strong>Add to Home Screen</strong>.</li><li>Tap Add.</li></ol>";
+          confirmInstallButton.hidden=true;
+        }else{
+          installInstructions.innerHTML=
+            "<p>Open your browser menu and choose <strong>Install App</strong> or <strong>Add to Home Screen</strong>.</p>";
+          confirmInstallButton.hidden=true;
+        }
+      });
+
+      confirmInstallButton.addEventListener("click",async()=>{
+        if(!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt=null;
+        installModal.hidden=true;
+      });
+
+      document.getElementById("closeInstallModal").addEventListener("click",()=>installModal.hidden=true);
+      installModal.addEventListener("click",event=>{
+        if(event.target===installModal) installModal.hidden=true;
+      });
+
+      if("serviceWorker" in navigator){
+        window.addEventListener("load",()=>{
+          navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
+        });
+      }
+
+      initCalculators();
+
+      if(hasValidAccess()){
+        unlockApp();
+      }else{
+        accessGate.hidden=false;
+        appShell.hidden=true;
+      }
+    })();
+  </script>
 </body>
 </html>

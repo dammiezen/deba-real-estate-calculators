@@ -1,33 +1,26 @@
 {
-  "name": "Deba Real Estate Calculators",
-  "short_name": "Deba Calculators",
-  "description": "Four real estate deal calculators.",
-  "start_url": "./index.html",
+  "name": "Deba Douglas Principles of Real Estate",
+  "short_name": "Deba Real Estate",
+  "description": "Private real estate calculator toolkit for authorized Roadmap to Real Estate Investing students.",
+  "id": "./",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#fbf5ee",
   "theme_color": "#0d5f6e",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "./icons/icon-192.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "./icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/maskable-512.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "./icons/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
+      "purpose": "any maskable"
     }
   ]
 }

@@ -1,0 +1,72 @@
+DEBA DOUGLAS PRINCIPLES OF REAL ESTATE — FREE PWA SETUP GUIDE
+================================================================
+
+APP CONTENT
+-----------
+This package contains only four calculators:
+
+1. BRRRR Investment Calculator
+2. Financed Flip Calculator
+3. Cash Buy Flip Calculator
+4. Wholesale Master Deal Analyzer
+
+TEMPORARY STUDENT ACCESS CODE
+-----------------------------
+ROADMAP2026
+
+Change this code before giving the app to students. The code is represented by a
+SHA-256 hash inside config.js. Ask your developer to replace accessCodeHash with
+the SHA-256 hash of the new code.
+
+IMPORTANT SECURITY LIMITATION
+-----------------------------
+This free version is a static Progressive Web App. The student access screen is a
+basic deterrent, not the same as a private membership login or secure server-side
+authentication. A technically skilled person could inspect or bypass client-side
+code. For stronger protection, use individual Kajabi member logins or a backend
+authentication service.
+
+HOW TO PUBLISH FREE WITH GITHUB PAGES
+-------------------------------------
+1. Create a free GitHub account.
+2. Create a new PUBLIC repository named:
+   deba-principles-real-estate
+3. Upload the CONTENTS of this folder.
+   index.html must be in the repository root.
+4. Open repository Settings > Pages.
+5. Under Build and deployment:
+   Source: Deploy from a branch
+   Branch: main
+   Folder: /(root)
+6. Save and wait for GitHub to generate the public HTTPS link.
+
+ANDROID INSTALLATION
+--------------------
+1. Open the public app link in Chrome.
+2. Tap Install App in the app header.
+3. Confirm installation.
+If no prompt appears, open Chrome's menu and choose Add to Home Screen.
+
+IPHONE / IPAD INSTALLATION
+--------------------------
+1. Open the public app link in Safari.
+2. Tap Share.
+3. Choose Add to Home Screen.
+4. Tap Add.
+
+FILES THAT MUST STAY TOGETHER
+-----------------------------
+index.html
+config.js
+manifest.webmanifest
+service-worker.js
+assets/deba-logo.png
+icons/icon-192.png
+icons/icon-512.png
+icons/apple-touch-icon.png
+
+LEGAL NOTICE
+------------
+The app includes a student-use restriction and educational disclaimer. Have Deba's
+attorney review the wording before final launch if it will be used as a formal
+agreement or enforcement policy.
