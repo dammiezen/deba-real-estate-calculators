@@ -173,6 +173,22 @@
       box-shadow:none;
     }
 
+    input:disabled{
+      opacity:1;
+      border-color:#cbd5d7;
+      color:#617174;
+      background:#e3e9ea;
+      cursor:not-allowed;
+      pointer-events:none;
+      -webkit-text-fill-color:#617174;
+    }
+
+    input:disabled::-webkit-inner-spin-button,
+    input:disabled::-webkit-outer-spin-button{
+      appearance:none;
+      margin:0;
+    }
+
     .field.locked-field label::after{
       content:" • Fixed";
       color:#8a999b;
@@ -1181,19 +1197,19 @@
                   </div>
                   <div class="field auto-field">
                     <label for="b_lenderFee">Lender Fee</label>
-                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_lenderFee" type="number" min="0" step=".01" readonly aria-readonly="true"></div>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_lenderFee" type="number" min="0" step=".01" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div>
                   </div>
                   <div class="field locked-field">
                     <label for="b_closingPct">Closing Cost %</label>
-                    <div class="input-wrap"><input class="with-suffix" id="b_closingPct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div>
+                    <div class="input-wrap"><input class="with-suffix" id="b_closingPct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"><span class="suffix">%</span></div>
                   </div>
                   <div class="field locked-field">
                     <label for="b_survey">Survey & Appraisal</label>
-                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_survey" type="number" min="0" step="1" readonly aria-readonly="true"></div>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_survey" type="number" min="0" step="1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div>
                   </div>
                   <div class="field locked-field">
                     <label for="b_additional">Insurance, Taxes & Other</label>
-                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_additional" type="number" min="0" step="1" readonly aria-readonly="true"></div>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_additional" type="number" min="0" step="1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div>
                   </div>
                 </div>
 
@@ -1229,11 +1245,11 @@
                   </div>
                   <div class="field locked-field">
                     <label for="b_ltv1">LTV Scenario 1</label>
-                    <div class="input-wrap"><input class="with-suffix" id="b_ltv1" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div>
+                    <div class="input-wrap"><input class="with-suffix" id="b_ltv1" type="number" min="0" max="100" step=".1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"><span class="suffix">%</span></div>
                   </div>
                   <div class="field locked-field">
                     <label for="b_ltv2">LTV Scenario 2</label>
-                    <div class="input-wrap"><input class="with-suffix" id="b_ltv2" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div>
+                    <div class="input-wrap"><input class="with-suffix" id="b_ltv2" type="number" min="0" max="100" step=".1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"><span class="suffix">%</span></div>
                   </div>
                 </div>
 
@@ -1341,9 +1357,9 @@
                   <div class="field"><label for="f_purchase">Purchase Price</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_purchase" type="number" min="0" step="100"></div></div>
                   <div class="field"><label for="f_rehab">Rehab</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_rehab" type="number" min="0" step="100"></div></div>
                   <div class="field"><label for="f_hmlPct">Hard Money Loan % of ARV</label><div class="input-wrap"><input class="with-suffix" id="f_hmlPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
-                  <div class="field auto-field"><label for="f_lenderFee">Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_lenderFee" type="number" min="0" step=".01" readonly aria-readonly="true"></div></div>
-                  <div class="field locked-field"><label for="f_closingPct">Buyer Closing Cost %</label><div class="input-wrap"><input class="with-suffix" id="f_closingPct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div></div>
-                  <div class="field locked-field"><label for="f_titlePct">Buyer Title Policy %</label><div class="input-wrap"><input class="with-suffix" id="f_titlePct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div></div>
+                  <div class="field auto-field"><label for="f_lenderFee">Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_lenderFee" type="number" min="0" step=".01" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div></div>
+                  <div class="field locked-field"><label for="f_closingPct">Buyer Closing Cost %</label><div class="input-wrap"><input class="with-suffix" id="f_closingPct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"><span class="suffix">%</span></div></div>
+                  <div class="field locked-field"><label for="f_titlePct">Buyer Title Policy %</label><div class="input-wrap"><input class="with-suffix" id="f_titlePct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"><span class="suffix">%</span></div></div>
                   <div class="field"><label for="f_survey">Survey & Appraisal</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_survey" type="number" min="0" step="1"></div></div>
                   <div class="field full"><label for="f_additional">Additional Cost — Insurance & Taxes</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_additional" type="number" min="0" step="1"></div></div>
                 </div>
@@ -1678,6 +1694,30 @@
         const element=document.getElementById(id);
         if(!element) return;
         element.value=decimals===null ? String(value) : Number(value).toFixed(decimals);
+      }
+
+      const permanentlyLockedInputIds = Object.freeze([
+        "b_lenderFee",
+        "b_closingPct",
+        "b_survey",
+        "b_additional",
+        "b_ltv1",
+        "b_ltv2",
+        "f_lenderFee",
+        "f_closingPct",
+        "f_titlePct"
+      ]);
+
+      function enforceLockedInputs(){
+        permanentlyLockedInputIds.forEach(id=>{
+          const input=document.getElementById(id);
+          if(!input) return;
+          input.readOnly=true;
+          input.disabled=true;
+          input.setAttribute("aria-readonly","true");
+          input.setAttribute("aria-disabled","true");
+          input.setAttribute("tabindex","-1");
+        });
       }
 
       const currency = new Intl.NumberFormat("en-US",{
@@ -2192,6 +2232,7 @@
         Object.keys(defaults).forEach(calc=>{
           if(!loadCalc(calc)) populate(calc,defaults[calc]);
         });
+        enforceLockedInputs();
       }
 
       window.addEventListener("beforeinstallprompt",event=>{
