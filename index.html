@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Deba Real Estate">
   <meta name="description" content="Private real estate calculator toolkit for authorized Roadmap to Real Estate Investing students.">
 
-  <title>Deba Douglas Principles of Real Estate</title>
+  <title>Roadmap Investment Calculator</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -157,6 +157,34 @@
       border-color:var(--teal);
       background:#fff;
       box-shadow:0 0 0 4px rgba(13,95,110,.08);
+    }
+
+    input[readonly]{
+      border-color:#d5ddde;
+      color:#69797c;
+      background:#e8edee;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+
+    input[readonly]:focus{
+      border-color:#d5ddde;
+      background:#e8edee;
+      box-shadow:none;
+    }
+
+    .field.locked-field label::after{
+      content:" • Fixed";
+      color:#8a999b;
+      font-size:.66rem;
+      font-weight:700;
+    }
+
+    .field.auto-field label::after{
+      content:" • Automatic";
+      color:#8a999b;
+      font-size:.66rem;
+      font-weight:700;
     }
 
     .agreement{
@@ -1034,10 +1062,10 @@
     <main class="app-main">
       <section class="view" id="homeView">
         <div class="dashboard-hero">
-          <h1>PRINCIPLES OF REAL ESTATES</h1>
+          <h1>Roadmap Investment Calculator</h1>
           <p>
-            Analyze BRRRR opportunities, financed flips, cash purchases, and wholesale
-            deals from one installable app built for Roadmap to Real Estate Investing.
+            Analyze BRRRR opportunities, hard money flips, cash purchase flips, and wholesale
+            deals from one installable app for Roadmap to Real Estate Investing.
           </p>
         </div>
 
@@ -1053,8 +1081,8 @@
           </article>
 
           <article class="calculator-card">
-            <span class="card-icon">F</span>
-            <h2>Financed Flip Calculator</h2>
+            <span class="card-icon">H</span>
+            <h2>Hard Money Flip Calculator</h2>
             <p>
               Analyze a hard-money purchase, cash to close, selling costs, total investment,
               and projected net profit.
@@ -1151,21 +1179,21 @@
                     <label for="b_hmlPct">Hard Money Loan % of ARV</label>
                     <div class="input-wrap"><input class="with-suffix" id="b_hmlPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
                   </div>
-                  <div class="field">
+                  <div class="field auto-field">
                     <label for="b_lenderFee">Lender Fee</label>
-                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_lenderFee" type="number" min="0" step="1"></div>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_lenderFee" type="number" min="0" step=".01" readonly aria-readonly="true"></div>
                   </div>
-                  <div class="field">
+                  <div class="field locked-field">
                     <label for="b_closingPct">Closing Cost %</label>
-                    <div class="input-wrap"><input class="with-suffix" id="b_closingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                    <div class="input-wrap"><input class="with-suffix" id="b_closingPct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div>
                   </div>
-                  <div class="field">
+                  <div class="field locked-field">
                     <label for="b_survey">Survey & Appraisal</label>
-                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_survey" type="number" min="0" step="1"></div>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_survey" type="number" min="0" step="1" readonly aria-readonly="true"></div>
                   </div>
-                  <div class="field">
+                  <div class="field locked-field">
                     <label for="b_additional">Insurance, Taxes & Other</label>
-                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_additional" type="number" min="0" step="1"></div>
+                    <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b_additional" type="number" min="0" step="1" readonly aria-readonly="true"></div>
                   </div>
                 </div>
 
@@ -1199,13 +1227,13 @@
                     <label for="b_holdingPct">Holding Cost % of Total Investment</label>
                     <div class="input-wrap"><input class="with-suffix" id="b_holdingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
                   </div>
-                  <div class="field">
+                  <div class="field locked-field">
                     <label for="b_ltv1">LTV Scenario 1</label>
-                    <div class="input-wrap"><input class="with-suffix" id="b_ltv1" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                    <div class="input-wrap"><input class="with-suffix" id="b_ltv1" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div>
                   </div>
-                  <div class="field">
+                  <div class="field locked-field">
                     <label for="b_ltv2">LTV Scenario 2</label>
-                    <div class="input-wrap"><input class="with-suffix" id="b_ltv2" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div>
+                    <div class="input-wrap"><input class="with-suffix" id="b_ltv2" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div>
                   </div>
                 </div>
 
@@ -1279,11 +1307,11 @@
         <div class="legal-footer">AUTHORIZED ROADMAP STUDENT USE ONLY • DO NOT SHARE • EDUCATIONAL ESTIMATES ONLY</div>
       </section>
 
-      <!-- FINANCED FLIP -->
+      <!-- HARD MONEY FLIP -->
       <section class="view calculator-view" id="financed-flipView" hidden>
         <div class="calc-header">
           <div>
-            <h1>Financed Flip Calculator</h1>
+            <h1>Hard Money Flip Calculator</h1>
             <p>Hard Money Purchase • Rehab • Sell • Net Profit</p>
           </div>
           <div class="calc-header-actions">
@@ -1313,9 +1341,9 @@
                   <div class="field"><label for="f_purchase">Purchase Price</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_purchase" type="number" min="0" step="100"></div></div>
                   <div class="field"><label for="f_rehab">Rehab</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_rehab" type="number" min="0" step="100"></div></div>
                   <div class="field"><label for="f_hmlPct">Hard Money Loan % of ARV</label><div class="input-wrap"><input class="with-suffix" id="f_hmlPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
-                  <div class="field"><label for="f_lenderFee">Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_lenderFee" type="number" min="0" step="1"></div></div>
-                  <div class="field"><label for="f_closingPct">Buyer Closing Cost %</label><div class="input-wrap"><input class="with-suffix" id="f_closingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
-                  <div class="field"><label for="f_titlePct">Buyer Title Policy %</label><div class="input-wrap"><input class="with-suffix" id="f_titlePct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field auto-field"><label for="f_lenderFee">Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_lenderFee" type="number" min="0" step=".01" readonly aria-readonly="true"></div></div>
+                  <div class="field locked-field"><label for="f_closingPct">Buyer Closing Cost %</label><div class="input-wrap"><input class="with-suffix" id="f_closingPct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div></div>
+                  <div class="field locked-field"><label for="f_titlePct">Buyer Title Policy %</label><div class="input-wrap"><input class="with-suffix" id="f_titlePct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true"><span class="suffix">%</span></div></div>
                   <div class="field"><label for="f_survey">Survey & Appraisal</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_survey" type="number" min="0" step="1"></div></div>
                   <div class="field full"><label for="f_additional">Additional Cost — Insurance & Taxes</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_additional" type="number" min="0" step="1"></div></div>
                 </div>
@@ -1373,7 +1401,7 @@
           </div>
 
           <aside class="calc-side">
-            <div class="side-card"><h3>Profit Rating</h3><p><strong>Green:</strong> $20,000+ net profit</p><p><strong>Orange:</strong> $0–$19,999</p><p><strong>Red:</strong> Negative profit</p></div>
+            <div class="side-card"><h3>Profit Rating</h3><p><strong>Green:</strong> $25,000+ net profit</p><p><strong>Orange:</strong> $0–$24,999</p><p><strong>Red:</strong> Negative profit</p></div>
             <div class="side-card"><h3>Formula Note</h3><p>Holding fees use the same sample basis: purchase price plus rehab budget.</p></div>
           </aside>
         </div>
@@ -1472,7 +1500,7 @@
 
           <aside class="calc-side">
             <div class="side-card"><h3>Sample Assumption</h3><p>Buyer closing costs and holding fees default to $0 to match the cash-buy sample. Enter a percentage when those costs apply.</p></div>
-            <div class="side-card"><h3>Profit Rating</h3><p><strong>Green:</strong> $20,000+ net profit</p><p><strong>Orange:</strong> $0–$19,999</p><p><strong>Red:</strong> Negative profit</p></div>
+            <div class="side-card"><h3>Profit Rating</h3><p><strong>Green:</strong> $25,000+ net profit</p><p><strong>Orange:</strong> $0–$24,999</p><p><strong>Red:</strong> Negative profit</p></div>
           </aside>
         </div>
         <div class="legal-footer">AUTHORIZED ROADMAP STUDENT USE ONLY • DO NOT SHARE • EDUCATIONAL ESTIMATES ONLY</div>
@@ -1630,6 +1658,27 @@
         cash:Object.keys(defaults.cash),
         wholesale:Object.keys(defaults.wholesale)
       };
+
+      const lockedAssumptions = Object.freeze({
+        lenderFeePct:3.49,
+        bClosingPct:2.5,
+        bSurvey:1000,
+        bAdditional:2000,
+        bLtv1:75,
+        bLtv2:80,
+        fClosingPct:2.5,
+        fTitlePct:1
+      });
+
+      function roundMoney(value){
+        return Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+      }
+
+      function setInputValue(id,value,decimals=null){
+        const element=document.getElementById(id);
+        if(!element) return;
+        element.value=decimals===null ? String(value) : Number(value).toFixed(decimals);
+      }
 
       const currency = new Intl.NumberFormat("en-US",{
         style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2
@@ -1821,12 +1870,22 @@
 
       function calculateBrrrr(){
         const arv=number("b_arv"),purchase=number("b_purchase"),rehab=number("b_rehab");
-        const hmlPct=number("b_hmlPct"),lender=number("b_lenderFee"),closingPct=number("b_closingPct");
-        const survey=number("b_survey"),additional=number("b_additional");
+        const hmlPct=number("b_hmlPct");
+        const lender=roundMoney(purchase*(lockedAssumptions.lenderFeePct/100));
+        const closingPct=lockedAssumptions.bClosingPct;
+        const survey=lockedAssumptions.bSurvey;
+        const additional=lockedAssumptions.bAdditional;
         const refiCost=number("b_refiCost"),holdingPct=number("b_holdingPct");
-        const ltv1=number("b_ltv1"),ltv2=number("b_ltv2");
+        const ltv1=lockedAssumptions.bLtv1,ltv2=lockedAssumptions.bLtv2;
         const rent=number("b_rent"),rate=number("b_rate"),term=number("b_term");
         const taxes=number("b_taxes"),insurance=number("b_insurance"),hoa=number("b_hoa");
+
+        setInputValue("b_lenderFee",lender,2);
+        setInputValue("b_closingPct",closingPct);
+        setInputValue("b_survey",survey);
+        setInputValue("b_additional",additional);
+        setInputValue("b_ltv1",ltv1);
+        setInputValue("b_ltv2",ltv2);
 
         const closing=purchase*(closingPct/100);
         const fees=lender+closing+survey+additional;
@@ -1867,10 +1926,16 @@
 
       function calculateFinanced(){
         const arv=number("f_arv"),purchase=number("f_purchase"),rehab=number("f_rehab");
-        const hmlPct=number("f_hmlPct"),lenderFee=number("f_lenderFee");
-        const closingPct=number("f_closingPct"),titlePct=number("f_titlePct");
+        const hmlPct=number("f_hmlPct");
+        const lenderFee=roundMoney(purchase*(lockedAssumptions.lenderFeePct/100));
+        const closingPct=lockedAssumptions.fClosingPct;
+        const titlePct=lockedAssumptions.fTitlePct;
         const survey=number("f_survey"),additional=number("f_additional");
         const realtorPct=number("f_realtorPct"),sellTitlePct=number("f_sellTitlePct"),holdingPct=number("f_holdingPct");
+
+        setInputValue("f_lenderFee",lenderFee,2);
+        setInputValue("f_closingPct",closingPct);
+        setInputValue("f_titlePct",titlePct);
 
         const closing=purchase*(closingPct/100);
         const buyerTitle=purchase*(titlePct/100);
@@ -1894,12 +1959,12 @@
         setText("f_totalInvestment",money(totalInvestment)); setText("f_profit",money(profit));
         setText("f_summaryProfit",money(profit)); setText("f_summaryCashClose",money(cashClose));
         setText("f_summaryTotal",money(totalInvestment));
-        setOutputTone("f_profit",profit,20000);
+        setOutputTone("f_profit",profit,25000);
 
         const status=document.getElementById("f_status");
         status.className="status";
-        if(profit>=20000){status.classList.add("green");status.textContent="Good Deal — Projected net profit is $20,000 or more.";}
-        else if(profit>=0){status.classList.add("orange");status.textContent="Review Deal — Projected profit is positive but below $20,000.";}
+        if(profit>=25000){status.classList.add("green");status.textContent="Good Deal — Projected net profit is $25,000 or more.";}
+        else if(profit>=0){status.classList.add("orange");status.textContent="Review Deal — Projected profit is positive but below $25,000.";}
         else{status.classList.add("red");status.textContent="No Deal — Projected net profit is negative.";}
 
         return {arv,purchase,rehab,hml,closeFees,outPocket,cashClose,buyInvestment,realtorFees,sellTitle,holding,sellCosts,totalInvestment,profit};
@@ -1930,12 +1995,12 @@
         setText("c_totalInvestment",money(totalInvestment)); setText("c_profit",money(profit));
         setText("c_summaryProfit",money(profit)); setText("c_summaryBuy",money(buyInvestment));
         setText("c_summaryTotal",money(totalInvestment));
-        setOutputTone("c_profit",profit,20000);
+        setOutputTone("c_profit",profit,25000);
 
         const status=document.getElementById("c_status");
         status.className="status";
-        if(profit>=20000){status.classList.add("green");status.textContent="Good Deal — Projected net profit is $20,000 or more.";}
-        else if(profit>=0){status.classList.add("orange");status.textContent="Review Deal — Projected profit is positive but below $20,000.";}
+        if(profit>=25000){status.classList.add("green");status.textContent="Good Deal — Projected net profit is $25,000 or more.";}
+        else if(profit>=0){status.classList.add("orange");status.textContent="Review Deal — Projected profit is positive but below $25,000.";}
         else{status.classList.add("red");status.textContent="No Deal — Projected net profit is negative.";}
 
         return {arv,purchase,rehab,closeFees,cashClose,buyInvestment,realtorFees,sellTitle,holding,sellCosts,totalInvestment,profit};
@@ -2020,7 +2085,7 @@
           return [
             "DEBA DOUGLAS PRINCIPLES OF REAL ESTATE",
             "AUTHORIZED STUDENT: "+authorized,
-            "FINANCED FLIP CALCULATOR",
+            "HARD MONEY FLIP CALCULATOR",
             "--------------------------------",
             "ARV: "+money(d.arv),
             "Purchase Price: "+money(d.purchase),

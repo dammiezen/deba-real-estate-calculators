@@ -6,7 +6,7 @@ APP CONTENT
 This package contains only four calculators:
 
 1. BRRRR Investment Calculator
-2. Financed Flip Calculator
+2. Hard Money Flip Calculator
 3. Cash Buy Flip Calculator
 4. Wholesale Master Deal Analyzer
 
