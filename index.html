@@ -1398,16 +1398,14 @@
                   <div class="field"><label for="f_rehab">Rehab</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_rehab" type="number" min="0" step="100"></div></div>
                   <div class="field"><label for="f_hmlPct">Hard Money Loan % of ARV</label><div class="input-wrap"><input class="with-suffix" id="f_hmlPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
                   <div class="field auto-field"><label for="f_lenderFee">Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_lenderFee" type="number" min="0" step=".01" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div></div>
-                  <div class="field locked-field"><label for="f_closingPct">Buyer Closing Cost (2.5%)</label><div class="input-wrap"><input class="with-suffix" id="f_closingPct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"><span class="suffix">%</span></div></div>
-                  <div class="field locked-field"><label for="f_titlePct">Buyer Title Policy (1%)</label><div class="input-wrap"><input class="with-suffix" id="f_titlePct" type="number" min="0" max="100" step=".1" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"><span class="suffix">%</span></div></div>
+                  <div class="field auto-field"><label for="f_closingPct">Buyer Closing Cost (2.5%)</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_closingPct" type="number" min="0" step=".01" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div></div>
+                  <div class="field auto-field"><label for="f_titlePct">Buyer Title Policy (1%)</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_titlePct" type="number" min="0" step=".01" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div></div>
                   <div class="field"><label for="f_survey">Survey & Appraisal</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_survey" type="number" min="0" step="1"></div></div>
                   <div class="field full"><label for="f_additional">Additional Cost — Insurance & Taxes</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="f_additional" type="number" min="0" step="1"></div></div>
                 </div>
 
                 <div class="result-grid">
                   <div class="result-item"><label>Hard Money Loan</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_hml">$0.00</div></div></div>
-                  <div class="result-item"><label id="f_closingAmountLabel">Buyer Closing Cost (2.5%)</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_closingAmount">$0.00</div></div></div>
-                  <div class="result-item"><label id="f_titleAmountLabel">Buyer Title Policy (1%)</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_titleAmount">$0.00</div></div></div>
                   <div class="result-item"><label>Closing Cost and Lender Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_closeFees">$0.00</div></div></div>
                   <div class="result-item"><label>LH — Out of Pocket</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="f_outPocket">$0.00</div></div></div>
                   <div class="result-item"><label>Total Cash to Close</label><div class="output-wrap"><span class="prefix">$</span><div class="output money orange" id="f_cashClose">$0.00</div></div></div>
@@ -1501,14 +1499,14 @@
                   <div class="field"><label for="c_rehab">Rehab</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_rehab" type="number" min="0" step="100"></div></div>
                   <div class="field"><label for="c_lenderFee">Optional Lender Fee</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_lenderFee" type="number" min="0" step="1"></div></div>
                   <div class="field"><label for="c_closingPct">Buyer Closing Cost Percentage</label><div class="input-wrap"><input class="with-suffix" id="c_closingPct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
-                  <div class="field"><label for="c_titlePct" id="c_titlePctFieldLabel">Buyer Title Policy (1%)</label><div class="input-wrap"><input class="with-suffix" id="c_titlePct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field auto-field"><label for="c_closingAmountField" id="c_closingAmountFieldLabel">Buyer Closing Cost (0%)</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_closingAmountField" type="number" min="0" step=".01" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div></div>
+                  <div class="field"><label for="c_titlePct">Buyer Title Policy Percentage</label><div class="input-wrap"><input class="with-suffix" id="c_titlePct" type="number" min="0" max="100" step=".1"><span class="suffix">%</span></div></div>
+                  <div class="field auto-field"><label for="c_titleAmountField" id="c_titleAmountFieldLabel">Buyer Title Policy (1%)</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_titleAmountField" type="number" min="0" step=".01" readonly aria-readonly="true" disabled aria-disabled="true" tabindex="-1"></div></div>
                   <div class="field"><label for="c_survey">Survey & Appraisal</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_survey" type="number" min="0" step="1"></div></div>
                   <div class="field"><label for="c_additional">Additional Cost — Insurance & Taxes</label><div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="c_additional" type="number" min="0" step="1"></div></div>
                 </div>
 
                 <div class="result-grid">
-                  <div class="result-item"><label id="c_closingAmountLabel">Buyer Closing Cost (0%)</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_closingAmount">$0.00</div></div></div>
-                  <div class="result-item"><label id="c_titleAmountLabel">Buyer Title Policy (1%)</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_titleAmount">$0.00</div></div></div>
                   <div class="result-item"><label>Closing Cost and Lender Fees</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_closeFees">$0.00</div></div></div>
                   <div class="result-item"><label>Cash Required to Purchase</label><div class="output-wrap"><span class="prefix">$</span><div class="output money orange" id="c_cashClose">$0.00</div></div></div>
                   <div class="result-item"><label>Purchase-Side Total Investment</label><div class="output-wrap"><span class="prefix">$</span><div class="output money" id="c_buyInvestment">$0.00</div></div></div>
@@ -1752,7 +1750,9 @@
         "b_ltv2",
         "f_lenderFee",
         "f_closingPct",
-        "f_titlePct"
+        "f_titlePct",
+        "c_closingAmountField",
+        "c_titleAmountField"
       ]);
 
       function enforceLockedInputs(){
@@ -2031,12 +2031,12 @@
         const survey=number("f_survey"),additional=number("f_additional");
         const realtorPct=number("f_realtorPct"),sellTitlePct=number("f_sellTitlePct"),holdingPct=number("f_holdingPct");
 
-        setInputValue("f_lenderFee",lenderFee,2);
-        setInputValue("f_closingPct",closingPct);
-        setInputValue("f_titlePct",titlePct);
+        const closing=roundMoney(purchase*(closingPct/100));
+        const buyerTitle=roundMoney(purchase*(titlePct/100));
 
-        const closing=purchase*(closingPct/100);
-        const buyerTitle=purchase*(titlePct/100);
+        setInputValue("f_lenderFee",lenderFee,2);
+        setInputValue("f_closingPct",closing,2);
+        setInputValue("f_titlePct",buyerTitle,2);
         const closeFees=lenderFee+closing+buyerTitle+survey+additional;
         const buyInvestment=purchase+rehab+closeFees;
         const hml=arv*(hmlPct/100);
@@ -2050,10 +2050,6 @@
         const profit=arv-totalInvestment;
 
         setText("f_hml",money(hml));
-        setText("f_closingAmountLabel","Buyer Closing Cost ("+formatPercent(closingPct)+")");
-        setText("f_closingAmount",money(closing));
-        setText("f_titleAmountLabel","Buyer Title Policy ("+formatPercent(titlePct)+")");
-        setText("f_titleAmount",money(buyerTitle));
         setText("f_closeFees",money(closeFees));
         setText("f_outPocket",money(outPocket)); setText("f_cashClose",money(cashClose));
         setText("f_buyInvestment",money(buyInvestment)); setText("f_realtorFees",money(realtorFees));
@@ -2089,11 +2085,10 @@
         const sellCosts=realtorFees+sellTitle;
         const totalInvestment=buyInvestment+sellCosts;
         const profit=arv-totalInvestment;
-        setText("c_closingAmountLabel","Buyer Closing Cost ("+formatPercent(closingPct)+")");
-        setText("c_closingAmount",money(closing));
-        setText("c_titlePctFieldLabel","Buyer Title Policy ("+formatPercent(titlePct)+")");
-        setText("c_titleAmountLabel","Buyer Title Policy ("+formatPercent(titlePct)+")");
-        setText("c_titleAmount",money(buyerTitle));
+        setText("c_closingAmountFieldLabel","Buyer Closing Cost ("+formatPercent(closingPct)+")");
+        setInputValue("c_closingAmountField",closing,2);
+        setText("c_titleAmountFieldLabel","Buyer Title Policy ("+formatPercent(titlePct)+")");
+        setInputValue("c_titleAmountField",buyerTitle,2);
         setText("c_closeFees",money(closeFees)); setText("c_cashClose",money(cashClose));
         setText("c_buyInvestment",money(buyInvestment)); setText("c_realtorFees",money(realtorFees));
         setText("c_sellTitle",money(sellTitle));
